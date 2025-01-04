@@ -1,93 +1,243 @@
-import React from "react";
-import Image from "next/image";
-import { FaAccessibleIcon } from "react-icons/fa";
-import { MdAddHome, MdAddHomeWork } from "react-icons/md";
-import { LuTouchpad } from "react-icons/lu";
+import React from 'react'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import Image from 'next/image'
 
 const page = () => {
   return (
-    <div className="max-w-7xl mx-auto p-6 bg-gray-50">
-      {/* Hero Section */}
-      <section className="text-center py-12">
-        <h1 className="text-4xl font-bold text-gray-900">About Us</h1>
-        <p className="mt-4 text-lg text-gray-600">
-          Welcome to our thrift store! We provide gently used items at
-          affordable prices, aiming to promote sustainability and support the
-          community.
-        </p>
-        <Image
-          src="assets/google.svg"
-          alt="Google"
-          className="h-5 mr-2"
-          width={20}
-          height={20}
-        />
-      </section>
-
-      {/* Mission Section */}
-      <section className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="space-y-4  bg-slate-500">
-          <h2 className="text-3xl font-semibold text-gray-800">Our Mission</h2>
-          <MdAddHomeWork className="text-gray-800" />
-
-          <p className="text-lg text-gray-600">
-            We are committed to offering high-quality, pre-loved goods that make
-            a positive impact on both your wallet and the environment. Our
-            mission is to make thrift shopping fun, affordable, and sustainable.
+    <div>
+      <div>
+        <Header></Header>
+      </div>
+      <div className="max-w-7xl mx-auto p-7 pt-[111px] grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        {/* Left Section: Text */}
+        <div className="space-y-6">
+          <h2 className="text-4xl font-medium text-gray-600">About Us</h2>
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
+            Welcome to Snap Thrift!
+          </h1>
+          <p className="text-gray-600 text-lg leading-relaxed">
+            At Snap Thrift, we believe in giving a second life to treasures
+            waiting to be discovered. We're more than just a thrift
+            store—we're a community of fashion enthusiasts, sustainability
+            advocates, and value seekers.
           </p>
+          <button className="bg-green-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-green-700 transition">
+            Get Started
+          </button>
         </div>
-        <div className="space-y-4 bg-slate-500">
-          <h2 className="text-3xl font-semibold text-gray-800">
-            Why Choose Us?
-          </h2>
-          <ul className="list-disc pl-5 space-y-2 text-lg text-gray-600">
-            <li>Wide selection of items ranging from clothing to furniture</li>
-            <li>Affordable prices with new inventory added regularly</li>
-            <li>Supporting local charities and community initiatives</li>
-            <li>Eco-friendly shopping experience</li>
-          </ul>
-        </div>
-      </section>
-      <div className="bg-slate-500">
-        {/* Team Section */}
-        <section className="mt-12 text-center">
-          <h2 className="text-3xl font-semibold text-gray-800 flex justify-center ">
-            Meet the Team
-            <FaAccessibleIcon className="text-blue-800 text-lg " />
-          </h2>
-
-          <p className="mt-4 text-lg text-gray-600">
-            Our team is passionate about curating the best items and delivering
-            a friendly, welcoming experience for all of our customers.
-          </p>
-          <div className="mt-8 flex justify-center space-x-6">
-            {/* Team Member 1 */}
-            <div className="w-36 h-36 rounded-full bg-gray-200"></div>
-            {/* Team Member 2 */}
-            <div className="w-36 h-36 rounded-full bg-gray-200"></div>
-            {/* Team Member 3 */}
-            <div className="w-36 h-36 rounded-full bg-gray-200"></div>
+        {/* Right Section: Images Layout */}
+        <div className="relative w-full h-[30rem] flex justify-center items-end">
+          {/* Image 1: Bottom Center */}
+          <div className="relative w-4/5 h-64 md:h-72 z-0 shadow-lg">
+            <img
+              src="/image/clothes-rack.jpeg"
+              alt="Clothes on Rack"
+              className="w-full h-full object-cover rounded-lg"
+            />
           </div>
-        </section>
 
-        {/* Contact Section */}
-        <section className="mt-12 text-center">
-          <h2 className="text-3xl font-semibold text-gray-800">Get In Touch</h2>
-          <LuTouchpad className="text-slate-900"/>
-          <p className="mt-4 text-lg text-gray-600">
-            Have questions? We'd love to hear from you! Reach out to us through
-            our contact page or visit us in store.
+          {/* Image 2: Top Left (Above and Overlapping) */}
+          <div className="absolute -top-0 -left-14 w-1/2 h-48 md:h-56 transform -rotate-6 shadow-lg z-10">
+            <img
+              src="/image/clothes-grid.png"
+              alt="Clothes Grid"
+              className="w-full h-full object-cover rounded-lg"
+            />
+          </div>
+
+          {/* Image 3: Top Right (Above and Overlapping) */}
+          <div className="absolute -top-0 -right-14 w-1/2 h-48 md:h-56 transform rotate-3 shadow-lg z-10">
+            <img
+              src="/image/phone-shopping.png"
+              alt="Phone Shopping"
+              className="w-full h-full object-cover rounded-lg"
+            />
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col items-center justify-center px-4 py-8 md:py-12 bg-gray-50">
+        <div className="flex flex-col md:flex-row items-center max-w-5xl mx-auto">
+          {/* Image Section */}
+          <div className="w-full md:w-1/3">
+            <Image
+              src="/image/laptop.png" 
+              alt="Pile of Clothes in Laptop"
+              width={400}  // Decreased width
+              height={300}  // Decreased height
+              layout="responsive"
+              className="object-cover"
+           />
+          </div>
+          {/* Text Section */}
+          <div className="w-full md:w-1/2 p-6 md:p-8">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">SNAP Story</h2>
+            <p className="text-gray-700 text-lg leading-relaxed mb-2">
+            <strong>Snap Thrift</strong> began as a small project inspired by our passion for
+            affordable, unique fashion and sustainability. While we're just starting out, we envision
+            growing into a space where style seamlessly meets purpose, making thrift shopping accessible
+            and meaningful for everyone.
+            </p>
+          </div>
+        </div>
+        {/* -- Mission Section -- */}
+        <div className="max-w-5xl mx-auto mt-12 text-center px-4">
+          <h3 className="text-3xl font-semibold text-gray-500 mb-2">OUR MISSION</h3>
+          <h1 className="text-2xl md:text-4xl font-extrabold mb-6">
+            MAKING THRIFTING BETTER FOR EVERYONE
+          </h1>
+          <p className="text-gray-600 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+            To make fashion affordable, sustainable, and personal. We strive to connect our customers
+            with one-of-a-kind finds while reducing the environmental impact of fast fashion.
           </p>
-          <a
-            href="/contact"
-            className="mt-6 inline-block px-6 py-3 bg-blue-600 text-white rounded-full"
-          >
-            Contact Us
-          </a>
-        </section>
+        </div>
+      </div>
+      {/* Community and Sustainability Section */}
+      <div className="max-w-4xl mx-auto space-y-12">
+        <div className="space-y-12">
+          {/* Community Section */}
+          <div className="flex flex-col md:flex-row items-center space-y-20 md:space-y-0">
+            {/* Image Section */}
+            <div className="w-full md:w-1/3">
+              <Image
+              src="/image/community.jpg" 
+              alt="community"
+              width={300}
+              height={300}
+              layout="responsive"
+              className="rounded-lg shadow-md"
+              />
+            </div>
+            {/* Text Section */}
+            <div className="w-full md:w-1/2 p-6 md:p-8">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2">Our Community</h2>
+              <p className="text-gray-800 text-base leading-relaxed">
+                Snap Thrift wouldn’t exist without our vibrant community of customers and contributors. Whether
+                you’re a seasoned thrifter or new to the world of second-hand shopping, you’re part of our journey
+                to make fashion more meaningful.
+              </p>
+            </div>
+          </div>
+          {/* Sustainability Section */}
+          <div className="flex flex-col md:flex-row items-center space-y-8 md:space-y-0">
+            {/* Image Section */}
+            <div className="w-full md:w-1/2 order-2 md:order-1">
+              <Image
+                src="/image/sustainable.png" 
+                alt="Sustainability at Heart"
+                width={500}
+                height={500}
+                layout="responsive"
+                className="rounded-full shadow-md w-full h-full object-cover" 
+              />
+            </div>
+            {/* Text Section */}
+            <div className="w-full md:w-1/2 p-6 md:p-8 order-1 md:order-2">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2">Sustainability at Heart</h2>
+              <p className="text-gray-700 text-base leading-relaxed">
+                 At Snap Thrift, we’re proud to champion the cause of sustainable fashion. By encouraging second-hand
+                shopping, we aim to reduce waste and inspire a more conscious approach to consumption. Every item we
+                sell is a step toward a greener planet.
+              </p>
+            </div>
+          </div>
+        </div> 
+      </div>
+      <div className="flex justify-center px-4 py-8 bg-white">
+        <div className="flex flex-col items-center justify-center ml-64">
+          {/* Join Us Section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center max-w-6xl mx-auto">
+            {/* Text Content */}
+            <div className="flex flex-col items-center md:items-start text-center md:text-left">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">Join Us!</h2>
+              <p className="text-gray-700 text-base leading-relaxed mb-6">
+                Dive into a world of unique finds and sustainable fashion. Explore Snap Thrift today and be part of
+                a movement that values style and the planet. Together, we can make a difference—one thrifted item at
+                a time.
+              </p>
+              <a
+              href="/shop"
+              className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-300"
+              >
+              Start Shopping
+              </a>
+            </div>
+            {/* Image Content */}
+            <div className="w-1/2">
+              <Image
+                src="/image/th.jpg"
+                alt="Join Us - Reasons to Thrift"
+                width={400}
+                height={300}
+                layout="responsive"
+                className="rounded-lg shadow-lg"
+                />
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Team Members Section */}
+      <div className="flex flex-col items-center justify-center px-4 py-8 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">Meet Our Team</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {/* Team Member 1 */}
+            <div className="flex flex-col items-center">
+              <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center shadow-lg">
+                <img
+                  src="/team-member1.jpg" 
+                  alt="Team Member 1"
+                  className="w-20 h-20 rounded-full object-cover"
+                />
+              </div>
+               <h3 className="text-xl font-medium mt-2">Shreya Shrestha</h3>
+               <p className="text-gray-600 text-sm">shreya@gmail.com</p>
+            </div>
+            {/* Team Member 2 */}
+            <div className="flex flex-col items-center">
+              <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center shadow-lg">
+                <img
+                  src="/team-member2.jpg" 
+                  alt="Team Member 2"
+                  className="w-20 h-20 rounded-full object-cover"
+                />
+              </div>
+              <h3 className="text-xl font-medium mt-2">Nabina Upadhyaya</h3>
+              <p className="text-gray-600 text-sm">nabina@gmail.com</p>
+            </div>
+            {/* Team Member 3 */}
+            <div className="flex flex-col items-center">
+              <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center shadow-lg">
+                <img
+                  src="/team-member3.jpg" 
+                  alt="Team Member 3"
+                  className="w-20 h-20 rounded-full object-cover"
+                />
+             </div>
+              <h3 className="text-xl font-medium mt-2">Aarati Rai</h3>
+              <p className="text-gray-600 text-sm">aaratirai777@gmail.com</p>
+            </div>
+            {/* Team Member 4 */}
+            <div className="flex flex-col items-center">
+              <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center shadow-lg">
+                <img
+                  src="/team-member4.jpg" 
+                  alt="Team Member 4"
+                  className="w-20 h-20 rounded-full object-cover"
+                />
+              </div>
+              <h3 className="text-xl font-medium mt-2">Pramig Kc</h3>
+              <p className="text-gray-600 text-sm">pramig@gmail.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <Footer></Footer>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default page;
+export default page
