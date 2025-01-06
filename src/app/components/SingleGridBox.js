@@ -1,7 +1,7 @@
 // src/components/SingleGridBox.jsx
 import React from 'react';
 
-const SingleGridBox = ({ image, name, category, price }) => {
+const SingleGridBox = ({ image, name, category, price, detailsLink }) => {
   return (
     <div className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center">
       <img
@@ -12,8 +12,15 @@ const SingleGridBox = ({ image, name, category, price }) => {
       <p className="font-semibold text-lg">Name: {name}</p>
       <p className="text-gray-600">Category: {category}</p>
       <p className="text-gray-600">Price: {price}</p>
+      <a
+        href={detailsLink}
+        className="mt-4 px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded-lg hover:bg-blue-600"
+      >
+        Details
+      </a>
     </div>
   );
 };
 
 export default SingleGridBox;
+
