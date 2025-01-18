@@ -107,7 +107,7 @@ const Page = () => {
                   ))}
                 </div>
               </div>
-              <div className="text-center mt-8">
+              <div className="flex justify-end mt-8">
                 <button className="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700">
                   View More
                 </button>
