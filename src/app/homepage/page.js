@@ -81,6 +81,12 @@ const Page = () => {
               <h3 className="text-lg font-bold mb-2">{item.name}</h3>
               <p className="text-sm text-gray-500">{item.category}</p>
               <p className="text-lg text-indigo-600 font-semibold">{item.price}</p>
+              <p className="text-[#5F41E4] mt-3 hover:underline">
+            <a href="/Details">
+
+   Details→
+            </a>
+          </p>
             </div>
           ))}
         </div>
