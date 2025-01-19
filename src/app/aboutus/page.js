@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Image from 'next/image'
+import Team from '../components/team'
 
 const page = () => {
   return (
@@ -176,61 +177,9 @@ const page = () => {
           </div>
         </div>
       </div>
-      {/* Team Members Section */}
-      <div className="flex flex-col items-center justify-center px-4 py-8 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">Meet Our Team</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {/* Team Member 1 */}
-            <div className="flex flex-col items-center">
-              <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center shadow-lg">
-                <img
-                  src="/team-member1.jpg" 
-                  alt="Team Member 1"
-                  className="w-20 h-20 rounded-full object-cover"
-                />
-              </div>
-               <h3 className="text-xl font-medium mt-2">Shreya Shrestha</h3>
-               <p className="text-gray-600 text-sm">shreya@gmail.com</p>
-            </div>
-            {/* Team Member 2 */}
-            <div className="flex flex-col items-center">
-              <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center shadow-lg">
-                <img
-                  src="/team-member2.jpg" 
-                  alt="Team Member 2"
-                  className="w-20 h-20 rounded-full object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-medium mt-2">Nabina Upadhyaya</h3>
-              <p className="text-gray-600 text-sm">nabina@gmail.com</p>
-            </div>
-            {/* Team Member 3 */}
-            <div className="flex flex-col items-center">
-              <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center shadow-lg">
-                <img
-                  src="/team-member3.jpg" 
-                  alt="Team Member 3"
-                  className="w-20 h-20 rounded-full object-cover"
-                />
-             </div>
-              <h3 className="text-xl font-medium mt-2">Aarati Rai</h3>
-              <p className="text-gray-600 text-sm">aaratirai777@gmail.com</p>
-            </div>
-            {/* Team Member 4 */}
-            <div className="flex flex-col items-center">
-              <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center shadow-lg">
-                <img
-                  src="/team-member4.jpg" 
-                  alt="Team Member 4"
-                  className="w-20 h-20 rounded-full object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-medium mt-2">Pramig Kc</h3>
-              <p className="text-gray-600 text-sm">pramig@gmail.com</p>
-            </div>
-          </div>
-        </div>
+
+      <div>
+        <Team></Team>
       </div>
 
       <div>
