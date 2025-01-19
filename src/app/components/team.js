@@ -18,12 +18,12 @@ const TeamMember = ({ name, email, imageSrc }) => (
 const Team = () => (
   <div className="flex flex-col items-center justify-center px-4 py-8 bg-white">
     <div className="max-w-6xl mx-auto">
-      <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">Meet Our Team</h2>
+      <h2 className="text-4xl font-medium text-gray-600 text-center mb-6">Meet Our Team</h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <TeamMember name="Shreya Shrestha" email="shreya@gmail.com" imageSrc="/team-member1.jpg" />
-        <TeamMember name="Nabina Upadhyaya" email="nabina@gmail.com" imageSrc="/team-member2.jpg" />
-        <TeamMember name="Aarati Rai" email="aaratirai777@gmail.com" imageSrc="/team-member3.jpg" />
-        <TeamMember name="Pramig Kc" email="pramig@gmail.com" imageSrc="/team-member4.jpg" />
+        <TeamMember name="Shreya Shrestha" email="shreya@gmail.com" imageSrc="/image/team_img/shreya.jpeg" />
+        <TeamMember name="Nabina Upadhyaya" email="nabina@gmail.com" imageSrc="/image/team_img/nabs.png" />
+        <TeamMember name="Aarati Rai" email="aaratirai777@gmail.com" imageSrc="/image/team_img/aarati.png" />
+        <TeamMember name="Pramig Kc" email="pramig@gmail.com" imageSrc="/image/team_img/pramig.png" />
       </div>
     </div>
   </div>

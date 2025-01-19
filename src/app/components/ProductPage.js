@@ -34,16 +34,16 @@ const ProductPage = () => {
               <p><span className="font-semibold">Tear:</span> None</p>
             </div>
 
-            {/* Seller Details
+            {/* Product Description */}
             <div className="mt-6 p-4 bg-gray-100 rounded-lg">
-              <h2 className="font-semibold">Seller Details</h2>
-              <p><span className="font-semibold">Name:</span> Nabina Upadhyaya</p>
-              <p><span className="font-semibold">Contact:</span> 9797979797</p>
-              <p><span className="font-semibold">Email:</span> nabsman@gmail.com</p>
-            </div> */}
+              <h2 className="font-semibold">Product Description</h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              </p>
+            </div>
 
             {/* Add to Cart Button */}
-            <button className="mt-6 w-auto bg-blue-600 text-white py-1 px-3 rounded-lg hover:bg-blue-700">
+            <button className="mt-6 w-auto bg-[#5F41E4] text-white py-1 px-3 rounded-lg hover:bg-blue-700">
                Add To Cart
             </button>
           </div>
