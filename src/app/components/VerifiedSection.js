@@ -1,6 +1,5 @@
 import React from 'react'
-
-const page = ({ product }) => {
+const VerifiedSection = () => {
   return (
     <div className="bg-gray-50 py-10">
     <div className="max-w-7xl mx-auto px-4">
@@ -44,8 +43,7 @@ const page = ({ product }) => {
       </div>
     </div>
   </div>
+  );
+};
 
-  )
-}
-
-export default page
+export default VerifiedSection;

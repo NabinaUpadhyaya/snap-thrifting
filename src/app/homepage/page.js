@@ -5,11 +5,13 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Slider from '../components/slider';
 import SingleGridBox from '../components/SingleGridBox';
+import Image from 'next/image';
 
 // Import items from respective files
 import { items as clothingItems } from '../data/clothingitems.js';
 import { items as shoeItems } from '../data/shoeitems.js';
 import { items as accessoryItems } from '../data/accessoriesitems.js';
+import VerifiedSection from '../components/VerifiedSection';
 
 const Page = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -45,7 +47,7 @@ const Page = () => {
       </div>
 
       <div className="pt-8">
-        <Slider />
+        {/* <Slider /> */}
       </div>
 
       <div>
@@ -87,15 +89,17 @@ const Page = () => {
               </button>
             </div>
 
+       
+
             {/* Clothing Section */}
             <div id="clothings">
-              <div className='pt-6'>
+              <div className='pt-6 bg-slate-300'>
                 <h1 className="text-center text-4xl font-bold text-indigo-600 mb-4">
                   Clothings
                 </h1>
               </div>
               <div className="px-20">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
                   {clothingItems.map((item, index) => (
                     <SingleGridBox
                       key={index}
@@ -113,16 +117,17 @@ const Page = () => {
                 </button>
               </div>
             </div>
+            
 
             {/* Shoes Section */}
-            <div id="shoes">
+            <div class>
               <div className='pt-6'>
                 <h1 className="text-center text-4xl font-bold text-indigo-600 mb-4">
                   Shoes
                 </h1>
               </div>
               <div className="px-20">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
                   {shoeItems.map((item, index) => (
                     <SingleGridBox
                       key={index}
@@ -141,6 +146,8 @@ const Page = () => {
               </div>
             </div>
 
+
+
             {/* Accessories Section */}
             <div id="accessories">
               <div className='pt-6'>
@@ -149,7 +156,7 @@ const Page = () => {
                 </h1>
               </div>
               <div className="px-20">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
                   {accessoryItems.map((item, index) => (
                     <SingleGridBox
                       key={index}
@@ -170,7 +177,7 @@ const Page = () => {
           </div>
         </div>
       </div>
-
+<VerifiedSection/>
       <div>
         <Footer />
       </div>
