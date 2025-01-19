@@ -12,7 +12,7 @@ const ProductPage = () => {
 
             {/* Smaller Images */}
             <div className="flex space-x-4">
-              <div className="w-24 h-24 bg-gray-300 rounded-lg"></div> 
+              <div className="w-24 h-24 bg-red-400 rounded-lg"></div> 
               <div className="w-24 h-24 bg-gray-300 rounded-lg"></div> 
               <div className="w-24 h-24 bg-gray-300 rounded-lg"></div> 
               <div className="w-24 h-24 bg-gray-300 rounded-lg"></div> 
@@ -34,13 +34,13 @@ const ProductPage = () => {
               <p><span className="font-semibold">Tear:</span> None</p>
             </div>
 
-            {/* Seller Details
+            Seller Details
             <div className="mt-6 p-4 bg-gray-100 rounded-lg">
               <h2 className="font-semibold">Seller Details</h2>
               <p><span className="font-semibold">Name:</span> Nabina Upadhyaya</p>
               <p><span className="font-semibold">Contact:</span> 9797979797</p>
               <p><span className="font-semibold">Email:</span> nabsman@gmail.com</p>
-            </div> */}
+            </div>
 
             {/* Add to Cart Button */}
             <button className="mt-6 w-auto bg-blue-600 text-white py-1 px-3 rounded-lg hover:bg-blue-700">
