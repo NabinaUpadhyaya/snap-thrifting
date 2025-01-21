@@ -11,6 +11,7 @@ const page = () => {
       <div>
         <Header></Header>
       </div>
+      <div className='bg-[#ededed]'>
       <div className="max-w-7xl mx-auto p-7 pt-[111px] grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         {/* Left Section: Text */}
         <div className="space-y-6">
@@ -59,6 +60,7 @@ const page = () => {
             />
           </div>
         </div>
+      </div>
       </div>
       <div className="flex flex-col items-center justify-center px-4 py-8 md:py-12 bg-gray-50">
       <div className="flex flex-col md:flex-row items-center justify-center max-w-5xl mx-auto">

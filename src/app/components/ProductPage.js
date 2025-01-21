@@ -1,27 +1,79 @@
-import Image from 'next/image';
+"use client";
+
+import { useState } from 'react';
 
 const ProductPage = () => {
+  // Define a state variable to store the selected image
+  const [selectedImage, setSelectedImage] = useState("/image/dress1.jpeg");
+
+  // Function to handle selecting a new image
+  const handleImageClick = (image) => {
+    setSelectedImage(image);
+  };
+
   return (
     <div className="mt-8 flex justify-center">
-      <div className="border border-gray-300 rounded-lg shadow-lg p-6 bg-white w-full max-w-6xl mx-auto"> {/* Centers and restricts width */}
+      <div className="border border-gray-300 rounded-lg shadow-lg p-6 bg-white w-full max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row">
           {/* Left Section - Image */}
-          <div className="lg:w-1/2 flex flex-col justify-center items-center"> {/* Reverted to original width */}
+          <div className="lg:w-1/2 flex flex-col justify-center items-center">
             {/* Main Image */}
-            <div className="w-96 h-96 bg-gray-300 rounded-lg mb-4"></div> 
+            <div className="w-96 h-96 bg-gray-300 rounded-lg mb-4">
+              <img
+                src={selectedImage}
+                alt="One Piece Dress"
+                className="w-full h-full object-cover rounded-lg"
+              />
+            </div>
 
             {/* Smaller Images */}
             <div className="flex space-x-4">
-              <div className="w-24 h-24 bg-gray-300 rounded-lg"></div> 
-              <div className="w-24 h-24 bg-gray-300 rounded-lg"></div> 
-              <div className="w-24 h-24 bg-gray-300 rounded-lg"></div> 
-              <div className="w-24 h-24 bg-gray-300 rounded-lg"></div> 
+              <div
+                className="w-24 h-24 bg-red-400 rounded-lg cursor-pointer"
+                onClick={() => handleImageClick("/image/dress1.jpeg")}
+              >
+                <img
+                  src="/image/dress1.jpeg"
+                  alt="One Piece Dress1 - mainImage"
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </div>
+              <div
+                className="w-24 h-24 bg-gray-300 rounded-lg cursor-pointer"
+                onClick={() => handleImageClick("/image/dress2.jpeg")}
+              >
+                <img
+                  src="/image/dress2.jpeg"
+                  alt="One Piece Dress2 - Small 1"
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </div>
+              <div
+                className="w-24 h-24 bg-gray-300 rounded-lg cursor-pointer"
+                onClick={() => handleImageClick("/image/dress3.jpeg")}
+              >
+                <img
+                  src="/image/dress3.jpeg"
+                  alt="One Piece Dress3 - Small 2"
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </div>
+              <div
+                className="w-24 h-24 bg-gray-300 rounded-lg cursor-pointer"
+                onClick={() => handleImageClick("/image/dress4.jpeg")}
+              >
+                <img
+                  src="/image/dress4.jpeg"
+                  alt="One Piece Dress4 - Small 3"
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </div>
             </div>
           </div>
 
           {/* Right Section - Details */}
           <div className="lg:w-1/2 mt-4 lg:mt-0 lg:ml-6">
-            <h1 className="text-2xl font-bold">One Piece</h1>
+            <h1 className="text-2xl font-bold">One Piece Dress</h1>
             <p className="text-lg text-gray-700 mt-2">Rs. 500</p>
             <span className="inline-block bg-green-200 text-green-800 text-sm font-semibold px-2 py-1 rounded-full mt-2">
               Clothings
@@ -37,14 +89,12 @@ const ProductPage = () => {
             {/* Product Description */}
             <div className="mt-6 p-4 bg-gray-100 rounded-lg">
               <h2 className="font-semibold">Product Description</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              </p>
+              <p>Stylish and comfortable one-piece dress suitable for any occasion.</p>
             </div>
 
             {/* Add to Cart Button */}
-            <button className="mt-6 w-auto bg-[#5F41E4] text-white py-1 px-3 rounded-lg hover:bg-blue-700">
-               Add To Cart
+            <button className="mt-6 w-auto bg-[#5F41E4] text-white text-2xl py-2 px-8 rounded-lg hover:bg-blue-700">
+              Add To Cart
             </button>
           </div>
         </div>
