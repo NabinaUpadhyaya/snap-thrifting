@@ -1,5 +1,7 @@
 import React from 'react'
-import Header from '../components/Header'
+
+import { FaInfoCircle } from 'react-icons/fa';
+import { AiOutlineLogin } from 'react-icons/ai'; 
 import Footer from '../components/Footer'
 import Image from 'next/image'
 import Team from '../components/team'
@@ -9,7 +11,34 @@ const page = () => {
   return (
     <div>
       <div>
-        <Header></Header>
+{/* Navbar */}
+<header className="flex items-center justify-between p-4 shadow-md bg-[#5F41E4]">
+      {/* Logo */}
+      <div className="text-2xl font-serif font-bold">
+        <span className="italic text-white">Snap-Thrift</span>
+      </div>
+
+      {/* Buttons */}
+      <ul className="flex items-center space-x-6">
+        
+        {/* About Us Button */}
+        <Link 
+          href="/aboutus"
+          className="px-4 py-2 text-[#5F41E4] bg-white rounded-md hover:bg-gray-300 flex items-center">
+          <FaInfoCircle size={20} className="mr-2" />
+          About Us
+        </Link>
+
+        {/* Login Button */}
+        <Link 
+          href="/login"
+          className="px-4 py-2 text-[#5F41E4] bg-white rounded-md hover:bg-gray-300 flex items-center">
+          <AiOutlineLogin size={20} className="mr-2" />
+          Login
+        </Link>
+
+      </ul>
+    </header>
       </div>
       <div className='bg-[#ededed]'>
       <div className="max-w-7xl mx-auto p-7 pt-[111px] grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
@@ -25,7 +54,7 @@ const page = () => {
             store—we're a community of fashion enthusiasts, sustainability
             advocates, and value seekers.
           </p>
-          <Link href="/login/page.js">
+          <Link href="/login">
             <button className="bg-[#5F41E4] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#4730aa] transition">
               Get Started
             </button>
@@ -161,12 +190,15 @@ const page = () => {
                 a movement that values style and the planet. Together, we can make a difference—one thrifted item at
                 a time.
               </p>
-              <a
-              href="/shop"
+              <ul>
+
+              <Link
+              href="/login"
               className="bg-[#5F41E4] hover:bg-[#4730aa] text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-300"
               >
               Start Shopping
-              </a>
+              </Link>
+                </ul>
             </div>
             {/* Image Content */}
             <div className="w-1/2">
