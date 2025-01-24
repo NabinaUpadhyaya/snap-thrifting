@@ -41,14 +41,14 @@ const page = () => {
       console.log("Sending request to the server with form data:", formData); // Log the form data
       const res = await axios.post(
         "https://snap-thrift-backend.onrender.com/auth/login",
-        formData, {
+        formData,
+        {
           headers: {
-            "Content-Type": "application/json"
-          }
+            "Content-Type": "application/json",
+          },
         }
       );
       console.log("Backend Response:", res.data); // Log the full response from the backend
-
 
       if (res.data.success) {
         // Redirect to homepage if login is successful
@@ -58,7 +58,6 @@ const page = () => {
         setError({ general: res.data.message || "Login failed. Try again." });
       }
     } catch (err) {
-
       // console.error("Error during login:", err); // Log the whole error
       if (err.response) {
         // console.error("Error response:", err.response); // Log the response part if available
@@ -77,7 +76,7 @@ const page = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#5F41E4]">
       <div className="bg-[#fff] p-8 rounded-lg shadow-lg w-80">
-        <h1 className="text-xl font-bold text-center mb-4">Log in with</h1>
+        <h1 className="text-xl font-bold text-center text-black mb-4">Log in with</h1>
 
         {/* Login form */}
         <form onSubmit={handleSubmit}>
@@ -87,7 +86,7 @@ const page = () => {
               name="email"
               placeholder="Enter your email"
               onChange={handleInput} // Handle input change
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#5F41E4]"
+              className="w-full text-black px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#5F41E4]"
               required
             />
             <MdOutlineEmail className="absolute top-1/3 right-3 text-gray-400" />
@@ -95,13 +94,13 @@ const page = () => {
               <span className="text-xs text-red-500 italic">{error.email}</span>
             )}
           </div>
-          <div className="mb-4 relative ">
+          <div className="mb-4 relative  ">
             <input
               type={showPassword ? "text" : "password"}
               name="password"
               placeholder="Enter your password"
               onChange={handleInput} // Handle input change
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#5F41E4]"
+              className="w-full px-4 text-black py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#5F41E4]"
               required
             />
 

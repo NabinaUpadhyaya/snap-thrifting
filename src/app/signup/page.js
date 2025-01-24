@@ -36,7 +36,7 @@ const Signup = () => {
 
     try {
       const res = await axios.post(
-        "https://snap-thrift-backend.onrender.com/auth/register",
+        "http://localhost:5000/auth/register",
         formData
       );
       console.log("Backend Response:", res.data); // Log the response for debugging
@@ -67,7 +67,7 @@ const Signup = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#5F41E4]">
       <div className="bg-[#fff] p-8 rounded-lg shadow-lg w-96 ">
-        <h1 className="text-xl font-bold text-center mb-4">Signup</h1>
+        <h1 className="text-xl font-bold text-black text-center mb-4">Signup</h1>
         <form onSubmit={handleSubmit}>
           {/* Name Field */}
           <div className="mb-4">
@@ -76,7 +76,7 @@ const Signup = () => {
               name="name"
               placeholder="Name"
               onChange={handleInput}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#5F41E4]"
+              className="w-full text-black px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#5F41E4]"
               required
             />
             {error.name && (
@@ -91,7 +91,7 @@ const Signup = () => {
               name="phoneNumber"
               placeholder="Contact no."
               onChange={handleInput}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#5F41E4]"
+              className="w-full text-black px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#5F41E4]"
               required
             />
             {error.phoneNumber && (
@@ -108,7 +108,7 @@ const Signup = () => {
               name="email"
               placeholder="Email address"
               onChange={handleInput}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#5F41E4]"
+              className="w-full text-black px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#5F41E4]"
               required
             />
           
@@ -124,11 +124,11 @@ const Signup = () => {
               name="password"
               placeholder="Password"
               onChange={handleInput}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#5F41E4]"
+              className="w-full px-4 text-black py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#5F41E4]"
               required
             />
              <button
-                          className="absolute inset-y-0 end-0 flex items-center z-20 px-2.5 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus-visible:text-indigo-500 hover:text-indigo-500 transition-colors"
+                          className="absolute text-black inset-y-0 end-0 flex items-center z-20 px-2.5 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus-visible:text-indigo-500 hover:text-indigo-500 transition-colors"
                           type="button"
                           onClick={toggleVisibility}
                           aria-label={showPassword ? "Hide password" : "Show password"}

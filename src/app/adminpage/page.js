@@ -22,7 +22,7 @@ const Page = () => {
 useEffect(() => {
   const fetchStats = async () => {
     try {
-      const response = await fetch("https://your-backend-api.com/api/stats"); // Replace with your API URL
+      const response = await fetch("http://localhost:5000/products/createProduct"); // Replace with your API URL
       const data = await response.json();
       setStats({
         customers: data.customers,
