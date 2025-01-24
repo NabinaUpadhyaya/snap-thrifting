@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const ProductPage = () => {
   // Define a state variable to store the selected image
-  const [selectedImage, setSelectedImage] = useState("/image/dress1.jpeg");
+  const [selectedImage, setSelectedImage] = useState("/image/dressfront.jpg");
 
   // Function to handle selecting a new image
   const handleImageClick = (image) => {
@@ -30,20 +30,20 @@ const ProductPage = () => {
             <div className="flex space-x-4">
               <div
                 className="w-24 h-24 bg-red-400 rounded-lg cursor-pointer"
-                onClick={() => handleImageClick("/image/dress1.jpeg")}
+                onClick={() => handleImageClick("/image/dressfront.jpg")}
               >
                 <img
-                  src="/image/dress1.jpeg"
+                  src="/image/dressfront.jpg"
                   alt="One Piece Dress1 - mainImage"
                   className="w-full h-full object-cover rounded-lg"
                 />
               </div>
               <div
                 className="w-24 h-24 bg-gray-300 rounded-lg cursor-pointer"
-                onClick={() => handleImageClick("/image/dress2.jpeg")}
+                onClick={() => handleImageClick("/image/dressback.webp")}
               >
                 <img
-                  src="/image/dress2.jpeg"
+                  src="/image/dressback.webp"
                   alt="One Piece Dress2 - Small 1"
                   className="w-full h-full object-cover rounded-lg"
                 />
