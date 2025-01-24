@@ -44,9 +44,9 @@ const Page = () => {
           </button>
         </div> */}
         <div className="mt-4">
-          <h2 className="text-xl font-semibold">Aarati Rai</h2>
-          <p className="text-gray-500">aaratirai177@gmail.com</p>
-          <p className="text-gray-500">Kathmandu</p>
+          <h2 className="text-xl font-semibold">Esther Tamang Upadhyaya</h2>
+          <p className="text-gray-500">esther@gmail.com</p>
+          <p className="text-gray-500">Dahachwok/Godawari</p>
         </div>
       </section>
       <div>

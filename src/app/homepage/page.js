@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
+import { FaSearch, FaRegListAlt } from 'react-icons/fa';
 import VerifiedSection from "../components/VerifiedSection";
 
 // Import items from respective files
@@ -14,97 +14,25 @@ import { items as accessoryItems } from "../data/accessoriesitems.js";
 const Page = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [expandedSections, setExpandedSections] = useState({
-    clothing: false,
-    shoes: false,
-    accessories: false,
-  });
+
+  // Combine all items into a single array
+  const allItems = [
+    ...clothingItems,
+    ...shoeItems,
+    ...accessoryItems,
+  ];
 
   // Filter items based on the category and search query
   const filterItems = (items) =>
     items.filter(
       (item) =>
-        item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.category.toLowerCase().includes(searchQuery.toLowerCase())
+        (selectedCategory === "" || item.category === selectedCategory) &&
+        (item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          item.category.toLowerCase().includes(searchQuery.toLowerCase()))
     );
 
-  const getSectionItems = (category) => {
-    switch (category) {
-      case "Clothings":
-        return filterItems(clothingItems);
-      case "Shoes":
-        return filterItems(shoeItems);
-      case "Accessories":
-        return filterItems(accessoryItems);
-      default:
-        return {
-          clothing: filterItems(clothingItems),
-          shoes: filterItems(shoeItems),
-          accessories: filterItems(accessoryItems),
-        };
-    }
-  };
-
-  // Toggle visibility for sections
-  const toggleSection = (section) => {
-    setExpandedSections((prev) => ({
-      ...prev,
-      [section]: !prev[section],
-    }));
-  };
-
-  const renderSection = (title, items, sectionKey) => (
-    <div className="mb-8 " id={sectionKey}>
-      <div className=" text-white text-center py-4 ">
-        <h2 className="text-2xl font-bold text-[#5F41E4]">{title}</h2>
-      </div>
-      <div className=" px-6 py-4 border-t border-gray-200">
-        <div
-          className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6 ${
-            expandedSections[sectionKey] ? "max-h-auto" : "max-h-[430px] overflow-hidden"
-          }`}
-        >
-          {items.map((item, index) => (
-            <div
-              key={index}
-              className="bg-gray-200 rounded-lg p-4 mb-5 mx-4 flex flex-col items-center shadow hover:shadow-md"
-            >
-              {/* Display item mainimage */}
-              <div className="relative w-full h-60 mb-4">
-                <img
-                  src={item.mainImage}
-                  alt={item.name}
-                  className="absolute inset-0 w-full h-full object-cover "
-                />
-              </div>
-              {/* Item details */}
-              <h3 className="text-lg font-bold mb-2">{item.name}</h3>
-              <p className="text-sm text-gray-500">{item.category}</p>
-              <p className="text-lg text-[#5F41E4] font-semibold">{item.price}</p>
-             
-             {/* DETAILS BUTTTON */}
-              <p className="text-[#5F41E4] mt-3 hover:underline">
-            <a href="/Details">
-
-              Details→
-            </a>
-          </p>
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-center  mt-4">
-          <button
-            className="px-6 py-2  bg-[#5F41E4] text-white rounded-lg hover:bg-[#5439c9]"
-            onClick={() => toggleSection(sectionKey)}
-          >
-            {expandedSections[sectionKey] ? "Show Less" : "View More"}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-
-  const sectionItems = getSectionItems(selectedCategory);
+  // Filtered items for rendering
+  const filteredItems = filterItems(allItems);
 
   return (
     <div>
@@ -112,7 +40,7 @@ const Page = () => {
 
       <div className="bg-gray-100 py-8">
         {/* Filter Section */}
-        <div className="flex flex-wrap  gap-4 mb-8 px-4 pt-16">
+        {/* <div className="flex flex-wrap gap-4 mb-8 px-4">
           <select
             className="px-4 py-2 items-start w-80 bg-[#5F41E4] text-white rounded-lg outline-none hover:bg-[#5238c2]"
             value={selectedCategory}
@@ -123,44 +51,90 @@ const Page = () => {
             <option value="Shoes">Shoes</option>
             <option value="Accessories">Accessories</option>
           </select>
-<div className="">
-
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="px-4 py-2 w-96  bg-gray-50 border rounded-lg outline-none"
+          <div className="">
+            <input
+              type="text"
+              placeholder="Shop for..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="px-4 py-2 w-96 bg-gray-50 border rounded-lg outline-none"
             />
-
-            </div>
+          </div>
           <button
-            onClick={() => setSearchQuery(searchQuery)}
-            className=" py-2 w-[100px] bg-[#5F41E4] text-white rounded-lg hover:bg-[#5239c1]"
-          >
-            Search
-          </button>
-        </div>
+        onClick={() => setSearchQuery(searchQuery)}
+        className="flex items-center justify-center py-2 w-[120px] bg-[#5F41E4] text-white rounded-lg hover:bg-[#5239c1] transition-all ease-in-out"
+      >
+        <FaSearch size={18} className="mr-2" />
+        Search
+      </button>
+        </div> */}
+        <div className="flex flex-wrap gap-4 mb-8 px-4 justify-center items-center">
+      {/* Category Dropdown */}
+      <select
+        className="flex items-center px-4 py-2 w-80 bg-[#5F41E4] text-white rounded-lg outline-none hover:bg-[#5238c2] focus:ring-2 focus:ring-[#5F41E4] transition-all"
+        value={selectedCategory}
+        onChange={(e) => setSelectedCategory(e.target.value)}
+      >
+        <option value="" className="text-gray-600">All Categories</option>
+        <option value="Clothings" className="text-gray-600">Clothings</option>
+        <option value="Shoes" className="text-gray-600">Shoes</option>
+        <option value="Accessories" className="text-gray-600">Accessories</option>
+      </select>
 
-        {/* Render Sections */}
-        {selectedCategory === "" ? (
-          <>
-            {renderSection("Clothings", sectionItems.clothing, "clothing")}
-            {renderSection("Shoes", sectionItems.shoes, "shoes")}
-            {renderSection("Accessories", sectionItems.accessories, "accessories")}
-          </>
-        ) : selectedCategory === "Clothings" ? (
-          renderSection("Clothings", sectionItems, "clothing")
-        ) : selectedCategory === "Shoes" ? (
-          renderSection("Shoes", sectionItems, "shoes")
-        ) : selectedCategory === "Accessories" ? (
-          renderSection("Accessories", sectionItems, "accessories")
-        ) : null}
+      {/* Search Input */}
+      <div className="relative w-72">
+        <input
+          type="text"
+          placeholder="Shop for..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="px-4 py-2 w-full bg-gray-50 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-[#5F41E4] transition-all"
+        />
+        <FaSearch size={20} className="absolute top-3 right-3 text-gray-400" />
+      </div>
+
+      {/* Search Button */}
+      <button
+        onClick={() => setSearchQuery(searchQuery)}
+        className="flex items-center justify-center py-2 w-[110px] bg-[#5F41E4] text-white rounded-lg hover:bg-[#5239c1] transition-all ease-in-out"
+      >
+     
+        Search
+      </button>
+    </div>
+
+        {/* Render Items in a Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 px-4">
+          {filteredItems.map((item, index) => (
+            <div
+              key={index}
+              className="bg-gray-200 rounded-lg p-4 mb-5 flex flex-col items-center shadow hover:shadow-md"
+            >
+              {/* Display item main image */}
+              <div className="relative w-full h-60 mb-4">
+                <img
+                  src={item.mainImage}
+                  alt={item.name}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
+              {/* Item details */}
+              <h3 className="text-lg font-bold mb-2">{item.name}</h3>
+              <p className="text-sm text-gray-500">{item.category}</p>
+              <p className="text-lg text-[#5F41E4] font-semibold">{item.price}</p>
+
+              {/* DETAILS BUTTON */}
+              <p className="text-[#5F41E4] mt-3 hover:underline">
+                <a href="/Details">Details →</a>
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
 
       <VerifiedSection />
 
-      <div className="mt-20"> 
+      <div className="">
         <Footer />
       </div>
     </div>

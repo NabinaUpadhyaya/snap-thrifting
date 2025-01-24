@@ -150,6 +150,11 @@ useEffect(() => {
         {/* Stats Cards */}
         <div className="grid grid-cols-4 gap-4 mb-5">
           <div className="bg-white p-5 rounded-lg shadow-md">
+            <h2 className="text-2xl font-bold">{stats.dashboards}</h2>
+            <p>Dashboard</p>
+          </div>
+        <div className="grid grid-cols-4 gap-4 mb-5">
+          <div className="bg-white p-5 rounded-lg shadow-md">
             <h2 className="text-2xl font-bold">{stats.customers}</h2>
             <p>Customers</p>
           </div>
@@ -182,7 +187,7 @@ useEffect(() => {
                 value={formData.productName}
                 onChange={handleInputChange}
                 placeholder="Enter product name"
-                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#5F41E4] focus:outline-none"
                 required
               />
             </div>
@@ -202,7 +207,7 @@ useEffect(() => {
                 value={formData.productPrice}
                 onChange={handleInputChange}
                 placeholder="Enter product price"
-                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#5F41E4] focus:outline-none"
                 required
               />
             </div>
@@ -222,7 +227,7 @@ useEffect(() => {
                 value={formData.productDescription}
                 onChange={handleInputChange}
                 placeholder="Enter product description"
-                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#5F41E4] focus:outline-none"
               ></textarea>
             </div>
 
@@ -239,7 +244,7 @@ useEffect(() => {
                 name="productSize"
                 value={formData.productSize}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#5F41E4] focus:outline-none"
                 required
               >
                 <option value="" disabled>
@@ -264,7 +269,7 @@ useEffect(() => {
                 name="productDiscolor"
                 value={formData.productDiscolor}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#5F41E4] focus:outline-none"
                 required
               >
                 <option value="" disabled>
@@ -286,7 +291,7 @@ useEffect(() => {
                 name="productTear"  
                 value={formData.productTear}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#5F41E4] focus:outline-none"
                 required
               >
                 <option value="" disabled>
@@ -310,7 +315,7 @@ useEffect(() => {
                 name="productCondition"
                 value={formData.productCondition}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#5F41E4] focus:outline-none"
                 required
               >
                 <option value="" disabled>
@@ -335,7 +340,7 @@ useEffect(() => {
                 name="productCategory"
                 value={formData.productCategory}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#5F41E4] focus:outline-none"
                 required
               >
                 <option value="" disabled>
@@ -361,7 +366,7 @@ useEffect(() => {
                   id="productImage1"
                   name="productImage1"
                   onChange={handleFileChange}
-                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#5F41E4] focus:outline-none"
                   required
                 />
               </div>
@@ -377,7 +382,7 @@ useEffect(() => {
                   id="productImage2"
                   name="productImage2"
                   onChange={handleFileChange}
-                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#5F41E4] focus:outline-none"
                   required
                 />
               </div>
@@ -387,7 +392,7 @@ useEffect(() => {
             <div className="col-span-2 text-center">
               <button
                 type="submit"
-                className="bg-[#5F41E4] text-white py-2 px-6 rounded-md hover:bg-blue-600 transition"
+                className="bg-[#5F41E4] text-white py-2 px-6 rounded-md hover:bg-[#5F41E4] transition"
               >
                 Add Product
               </button>
@@ -395,6 +400,7 @@ useEffect(() => {
           </form>
         </div>
       </div>
+    </div>
     </div>
   );
 };

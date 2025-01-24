@@ -1,10 +1,12 @@
 "use client"
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 const page = () => {
   const [cartItems, setCartItems] = useState([]); // Store cart items
-  const [loading, setLoading] = useState(true); // Loading state
+  // const [loading, setLoading] = useState(true); // Loading state
 
   // Fetch cart items from the backend on component mount
   useEffect(() => {
@@ -19,10 +21,11 @@ const page = () => {
         console.log("Cart Items Response:", res.data);
         setCartItems(res.data.cartItems); // Update the cartItems state with data from the backend
       } catch (error) {
-        // console.error("Error fetching cart items:", error);
-      } finally {
-        setLoading(false); // Stop loading after the data is fetched
-      }
+        console.log("Error fetching cart items:", error);
+      } 
+      // finally {
+      //   setLoading(false); // Stop loading after the data is fetched
+      // }
     };
 
     fetchCartItems();
@@ -67,13 +70,14 @@ const page = () => {
     0
   );
 
-  if (loading) {
-    return <p className="text-center text-lg mt-48 text-[#5F41E4]">Loading cart items...</p>;
-  }
+  // if (loading) {
+  //   return <p className="text-center text-lg mt-48 text-[#5F41E4]">Loading cart items...</p>;
+  // }
 
   return (
     <div className="min-h-screen bg-gray-100 py-8 px-4">
-      <h1 className="text-center text-3xl font-bold text-[#5F41E4] mb-8">
+      <Header/>
+      <h1 className="text-center text-3xl font-bold text-[#5F41E4] pt-6 mb-8">
         YOUR CART
       </h1>
 
@@ -132,7 +136,7 @@ const page = () => {
           </div>
           <div className="flex items-center gap-4 mt-4">
             <button className="px-6 py-2 bg-[#5F41E4] text-white rounded-lg hover:bg-[#4e37c0]">
-              CheckOut
+              Check Out
             </button>
            
          

@@ -1,39 +1,55 @@
 import React from "react";
-
+import Link from "next/link";
+import {FiHome, FiShoppingCart, FiUser } from 'react-icons/fi'; // Importing icons
+import { AiOutlineShop } from 'react-icons/ai';
 const Header = () => {
   return (
-    <div className="fixed top-0 left-0 w-full bg-[#5F41E4] text-white p-3 shadow-md z-50">
-      <div className="flex justify-between items-center">
-        {/* Logo or Title Section */}
-        <div className="flex items-center">
-          <h1 className="text-2xl font-bold">Thrift Store</h1>
-        </div>
-        
-        {/* Navigation Menu */}
-        <div className="flex items-center">
-          <nav>
-            <ul className="flex space-x-6">
-              {/* Example Link */}
-              <li>
-                <a href="#" className="hover:text-gray-300">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="/profile" className="hover:text-gray-300">
-                  Profile
-                </a>
-              </li>
-              <li>
-                <a href="/logout" className="hover:text-gray-300">
-                  Logout
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+    <header className="flex items-center justify-between p-4 shadow-md bg-[#5F41E4]">
+      {/* Logo */}
+      <div className="text-2xl font-serif font-bold">
+        <span className="italic text-white">Snap-Thrift</span>
       </div>
-    </div>
+
+      {/* Search bar */}
+      {/* <div className="flex items-center w-1/3">
+        <input
+          type="text"
+          placeholder="Shop for..."
+          className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#5F41E4]"
+        />
+        <button className="ml-2 text-gray-500 hover:text-[#4e38ae]">
+          <FiSearch size={24} />
+        </button>
+      </div> */}
+
+      {/* Buttons */}
+      <ul className="flex items-center space-x-4">
+        
+        <Link 
+        href="/howitworks"
+        className="px-4 py-2 text-[#5F41E4] bg-white rounded-md hover:bg-gray-300 flex items-center">
+          <AiOutlineShop size={20} className="mr-2" />
+          Start Selling
+        </Link>
+       
+          <Link
+          href="/addtocart"
+          className="text-white hover:text-gray-300">
+            <FiShoppingCart size={24} />
+          </Link>
+          <Link 
+          href="/profile"
+          className="text-white hover:text-gray-300">
+            <FiUser size={24} />
+          </Link>
+          <Link 
+  href="/homepage" 
+  className="text-white hover:text-gray-300">
+    <FiHome size={24} />  {/* Use the home icon */}
+</Link> 
+      
+      </ul>
+    </header>
   );
 };
 
