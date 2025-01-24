@@ -48,26 +48,7 @@ const ProductPage = () => {
                   className="w-full h-full object-cover rounded-lg"
                 />
               </div>
-              <div
-                className="w-24 h-24 bg-gray-300 rounded-lg cursor-pointer"
-                onClick={() => handleImageClick("/image/dress3.jpeg")}
-              >
-                <img
-                  src="/image/dress3.jpeg"
-                  alt="One Piece Dress3 - Small 2"
-                  className="w-full h-full object-cover rounded-lg"
-                />
-              </div>
-              <div
-                className="w-24 h-24 bg-gray-300 rounded-lg cursor-pointer"
-                onClick={() => handleImageClick("/image/dress4.jpeg")}
-              >
-                <img
-                  src="/image/dress4.jpeg"
-                  alt="One Piece Dress4 - Small 3"
-                  className="w-full h-full object-cover rounded-lg"
-                />
-              </div>
+              
             </div>
           </div>
 
@@ -81,20 +62,20 @@ const ProductPage = () => {
 
             <div className="mt-4">
               <p><span className="font-semibold">Size:</span> M</p>
-              <p><span className="font-semibold">Condition:</span> 10/10</p>
+              <p><span className="font-semibold">Condition:</span> Used</p>
               <p><span className="font-semibold">Discolor:</span> None</p>
               <p><span className="font-semibold">Tear:</span> None</p>
             </div>
 
             {/* Product Description */}
             <div className="mt-6 p-4 bg-gray-100 rounded-lg">
-              <h2 className="font-semibold">Product Description</h2>
+              <h2 className="font-semibold">Description</h2>
               <p>Stylish and comfortable one-piece dress suitable for any occasion.</p>
             </div>
 
             {/* Add to Cart Button */}
-            <button className="mt-6 w-auto bg-[#5F41E4] text-white text-2xl py-2 px-8 rounded-lg hover:bg-blue-700">
-              Add To Cart
+            <button className="mt-6 w-auto bg-[#5F41E4] text-white text-xl py-2 px-8 rounded-lg hover:bg-[#452fa3]">
+            + Add To Cart
             </button>
           </div>
         </div>

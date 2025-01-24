@@ -75,7 +75,7 @@ const page = () => {
   // }
 
   return (
-    <div className="min-h-screen bg-gray-100 py-8 px-4">
+    <div className="min-h-screen bg-gray-100">
       <Header/>
       <h1 className="text-center text-3xl font-bold text-[#5F41E4] pt-6 mb-8">
         YOUR CART
