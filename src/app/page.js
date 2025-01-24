@@ -1,6 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link';
+import { FaInfoCircle } from 'react-icons/fa';
+import { AiOutlineInfoCircle, AiOutlineLogin } from 'react-icons/ai'; 
 import Footer from './components/Footer';
 
 const page = () => {
@@ -17,28 +19,36 @@ const page = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
      {/* Navbar */}
-     <header className="fixed top-0 left-0 w-full bg-[#5F41E4] text-white p-4 shadow-md z-50">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center">
-            <h1 className="text-2xl font-bold">Thrift Store</h1>
-          </div>
-          <div className="flex items-center">
-            <nav>
-              <ul className="flex space-x-6">
-                <Link href="/aboutus" className="hover:text-gray-300">
-                  About Us
-                </Link>
-                <Link href="/login" className="hover:text-gray-300">
-                  Login
-                </Link>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
+     <header className="flex items-center justify-between p-4 shadow-md bg-[#5F41E4]">
+      {/* Logo */}
+      <div className="text-2xl font-serif font-bold">
+        <span className="italic text-white">Snap-Thrift</span>
+      </div>
+
+      {/* Buttons */}
+      <ul className="flex items-center space-x-6">
+        
+        {/* About Us Button */}
+        <Link 
+          href="/aboutus"
+          className="px-4 py-2 text-[#5F41E4] bg-white rounded-md hover:bg-gray-300 flex items-center">
+          <FaInfoCircle size={20} className="mr-2" />
+          About Us
+        </Link>
+
+        {/* Login Button */}
+        <Link 
+          href="/login"
+          className="px-4 py-2 text-[#5F41E4] bg-white rounded-md hover:bg-gray-300 flex items-center">
+          <AiOutlineLogin size={20} className="mr-2" />
+          Login
+        </Link>
+
+      </ul>
+    </header>
 
       {/* Add margin to prevent overlap */}
-      <div className="mt-16"></div>
+      <div className=""></div>
 
       {/* Photo Section */}
       <div

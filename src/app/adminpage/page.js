@@ -10,7 +10,6 @@ import {
   FaListAlt,
   FaBoxOpen,
   FaImages,
-  FaSearch,
 } from "react-icons/fa";
 
 const Page = () => {
@@ -18,24 +17,25 @@ const Page = () => {
     customers: 0,
     packages: 0,
     orders: 0,
-});
-useEffect(() => {
-  const fetchStats = async () => {
-    try {
-      const response = await fetch("https://your-backend-api.com/api/stats"); // Replace with your API URL
-      const data = await response.json();
-      setStats({
-        customers: data.customers,
-        packages: data.packages,
-        orders: data.orders,
-      });
-    } catch (error) {
-      // console.error("Error fetching stats:", error);
-    }
-  };
+  });
 
-  fetchStats();
-}, []);
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await fetch("https://your-backend-api.com/api/stats"); // Replace with your API URL
+        const data = await response.json();
+        setStats({
+          customers: data.customers,
+          packages: data.packages,
+          orders: data.orders,
+        });
+      } catch (error) {
+        console.log("Error fetch]]ing stats:", error);
+      }
+    };
+
+    fetchStats();
+  }, []);
 
   const [formData, setFormData] = useState({
     productName: "",
@@ -44,13 +44,11 @@ useEffect(() => {
     productSize: "",
     productDiscolor: "",
     productCondition: "",
-    productTear:"",
+    productTear: "",
     productCategory: "",
     productImage1: null,
     productImage2: null,
   });
-
-  // Fetch data from backend
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -64,7 +62,7 @@ useEffect(() => {
     const { name, files } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: files[0], // Only keep the first selected file
+      [name]: files[0],
     }));
   };
 
@@ -81,7 +79,6 @@ useEffect(() => {
     form.append("tear", formData.productTear);
     form.append("category", formData.productCategory);
 
-    // Append the images
     if (formData.productImage1) {
       form.append("images", formData.productImage1);
     }
@@ -101,7 +98,6 @@ useEffect(() => {
 
       if (response.ok) {
         console.log("Product added successfully:", data);
-        // Reset form after successful submission (optional)
         setFormData({
           productName: "",
           productPrice: "",
@@ -109,51 +105,46 @@ useEffect(() => {
           productSize: "",
           productDiscolor: "",
           productCondition: "",
-          productTear:"",
+          productTear: "",
           productCategory: "",
           productImage1: null,
           productImage2: null,
         });
       } else {
-        console.error("Error adding product:", data);
+        console.log("Error adding product:", data);
       }
     } catch (error) {
-    //   console.error("Error submitting form:", error);
+      console.log("Error submitting form:", error);
     }
   };
 
   return (
     <div className="min-h-screen flex">
       {/* Sidebar */}
-      <div className="bg-[#5F41E4] w-64 p-5 text-white">
-        <h1 className="text-2xl font-bold mb-8">SNAP-Thrift</h1>
+      <div className="bg-[#5F41E4] w-64 p-5 flex-shrink-0 text-white">
+        <h1 className=" italic text-white text-2xl font-bold mb-8">SNAP-Thrift</h1>
         <ul>
-          <li className="mb-4 flex items-center">
-            <FaUsers className="mr-2" /> Customers
+          <li className="mb-4 hover:text-[#3b2796] flex items-center">
+            <FaUsers className="mr-2 " /> Customers
           </li>
-          <li className="mb-4 flex items-center">
-            <FaProjectDiagram className="mr-2" /> Package Requests
+          <li className="mb-4 hover:text-[#3b2796] flex items-center">
+            <FaProjectDiagram className="mr-2 " /> Package Requests
           </li>
-          <li className="mb-4 flex items-center">
-            <FaShoppingCart className="mr-2" /> Orders
+          <li className="mb-4 hover:text-[#3b2796] flex items-center">
+            <FaShoppingCart className="mr-2 " /> Orders
           </li>
         </ul>
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-5 bg-gray-100">
+      <div className="flex-grow p-5 bg-gray-100">
         {/* Header */}
         <div className="flex justify-between items-center mb-5">
           <h1 className="text-2xl font-bold">Dashboard</h1>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-4 gap-4 mb-5">
-          <div className="bg-white p-5 rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold">{stats.dashboards}</h2>
-            <p>Dashboard</p>
-          </div>
-        <div className="grid grid-cols-4 gap-4 mb-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
           <div className="bg-white p-5 rounded-lg shadow-md">
             <h2 className="text-2xl font-bold">{stats.customers}</h2>
             <p>Customers</p>
@@ -168,8 +159,8 @@ useEffect(() => {
           </div>
         </div>
 
-        {/* Add Your Product Section */}
-        <div className="bg-white p-6 rounded-lg shadow-lg">
+         {/* Add Your Product Section */}
+         <div className="bg-white p-6 rounded-lg shadow-lg">
           <h2 className="font-bold text-2xl mb-6 text-center">Add Your Product</h2>
           <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
             {/* Product Name */}
@@ -400,7 +391,6 @@ useEffect(() => {
           </form>
         </div>
       </div>
-    </div>
     </div>
   );
 };
