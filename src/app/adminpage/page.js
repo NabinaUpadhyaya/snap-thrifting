@@ -17,7 +17,7 @@ const Page = () => {
     customers: 0,
     packages: 0,
     orders: 0,
-<<<<<<< HEAD
+
 });
 useEffect(() => {
   const fetchStats = async () => {
@@ -33,9 +33,7 @@ useEffect(() => {
       // console.error("Error fetching stats:", error);
     }
   };
-=======
   });
->>>>>>> bb09a4f7fbe18e460765fe6ad5b70c19e071ecda
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -411,6 +409,6 @@ useEffect(() => {
       </div>
     </div>
   );
-};
+}
 
 export default Page;
