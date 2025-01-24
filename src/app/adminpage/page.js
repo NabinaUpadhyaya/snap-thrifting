@@ -138,7 +138,9 @@ useEffect(() => {
     <div className="min-h-screen flex">
       {/* Sidebar */}
       <div className="bg-[#5F41E4] w-64 p-5 flex-shrink-0 text-white">
-        <h1 className=" italic text-white text-2xl font-bold mb-8">SNAP-Thrift</h1>
+      <div className="text-2xl font-serif font-bold mb-4y">
+        <span className="italic text-white">Snap-Thrift</span>
+      </div>
         <ul>
           <li className="mb-4 hover:text-[#3b2796] flex items-center">
             <FaUsers className="mr-2 " /> Customers
