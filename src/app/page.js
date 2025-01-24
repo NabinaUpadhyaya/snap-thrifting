@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link';
+import Footer from './components/Footer';
 
 const page = () => {
   const products = [
@@ -33,26 +34,18 @@ const page = () => {
           <ul className="flex space-x-6">
             <Link href="#" className="hover:text-gray-300">About Us</Link>
             <Link href="/login" className="hover:text-gray-300">Login</Link>
-            <Link href="/signup" className="hover:text-gray-300">Signup</Link>
+          
           </ul>
         </nav>
         </div>
       </div>
     </header>
 
-    {/* Hero Section */}
-    <section className="text-center py-16 bg-[#EAE7F0]">
-      <h2 className="text-2xl font-semibold text-gray-800 pt-10">Welcome to Our Thrift Store!</h2>
-      <p className="text-sm text-gray-600 mt-4">Have items you no longer need? Sell them to our thrift store and help others find great bargains..</p>
-      <a href="/login" className="mt-6 inline-block bg-[#5F41E4] text-white px-6 py-3 rounded-lg hover:bg-[#4a32b9]">+Upload for free</a>
-    </section>
-
-   
 
    
 {/*about us*/}
-    <section id="about" className="py-10 bg-white">
-  <div className="max-w-screen-xl mx-auto text-center px-4">
+    <section id="about" className="py-10  bg-[#EAE7F0] ">
+  <div className="max-w-screen-xl mx-auto text-center px-4 mt-20">
     <h3 className="pb-10 text-2xl font-bold text-gray-800">
       See some of the latest Items arrivals...
     </h3>
@@ -97,6 +90,14 @@ const page = () => {
   </div>
 </section>
 
+    {/* Hero Section */}
+    <section className="text-center py-16 bg-white">
+      <h2 className="text-2xl font-semibold text-gray-800 pt-10">Sell/Donate your Items</h2>
+      <p className="text-sm text-gray-600 mt-4">Have items you no longer need? Sell them to our thrift store and help others find great bargains..</p>
+      <a href="/login" className="mt-6 inline-block bg-[#5F41E4] text-white px-6 py-3 rounded-lg hover:bg-[#4a32b9]">Join Us</a>
+    </section>
+
+   
 
  {/* why queries section */}
  <section id="why" className="py-10 bg-[#EAE7F0]">
@@ -111,7 +112,7 @@ const page = () => {
           We only select quality items. Only 60% of items that we receive are accepted on average.
         </p>
       </div>
-      <div className="ml-4">
+      {/* <div className="ml-4">
         <Image
          src="/public/image/quality finds.webp"
                 alt="Google"
@@ -119,7 +120,7 @@ const page = () => {
           height={50}
           className="rounded-full"
           />
-      </div>
+      </div> */}
     </div>
 
     <div className="bg-[#B3DFC7] p-6 rounded-lg flex items-center w-50 mr-10">
@@ -145,43 +146,7 @@ const page = () => {
       </div>        
 
     </section>
-
- {/* Footer section */}
-      <footer className="bg-gray-800 text-white py-10">
-  <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4 md:px-8">
-    {/* About Column */}
-    <div>
-      <h4 className="text-2xl font-semibold mb-4">SNAP Thrift</h4>
-      <p className="text-gray-300 leading-relaxed">
-        We are the first online thrift store that guarantees the quality of every item. Established in 2024, we have been serving our secondhand-loving customers.
-      </p>
-    </div>
-
-    {/* Contact Column */}
-    <div>
-      <h4 className="text-2xl font-semibold mb-4">Contact</h4>
-      <ul className="space-y-3 text-gray-300">
-        <li>Email: <a href="mailto:snapthriftstore@gmail.com" className="text-gray-100 hover:text-gray-400">snapthriftstore@gmail.com</a></li>
-        <li>Phone: <a href="tel:+977-97********" className="text-gray-100 hover:text-gray-400">+977-97********</a></li>
-        <li>
-          <a href="#" className="hover:text-gray-400">Facebook</a>
-        </li>
-        <li>
-          <a href="#" className="hover:text-gray-400">Instagram</a>
-        </li>
-        <li>
-          <a href="#" className="hover:text-gray-400"> TikTok</a>
-        </li>
-      </ul>
-    </div>
-
-   
-  </div>
-
-  <div className="text-center mt-8 border-t border-gray-600 pt-4">
-    <p className="text-gray-400">&copy; 2024 SNAP Thrift. All rights reserved.</p>
-  </div>
-</footer>
+<Footer/>
 
   </div>
   )

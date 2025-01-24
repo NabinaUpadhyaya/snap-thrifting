@@ -12,7 +12,15 @@ function Validation(values) {
     //   errors.lastName = "(Empty Field)";
     // } else if (values.lastName && values.lastName.trim().length === 0) {
     //   errors.lastName = "(Empty Field)";
-    // }
+
+    let phone_pattern = /^9\d{9}$/;
+    if (values.phoneNumber === "") {
+      errors.phoneNumber = "(Empty Field)";
+    } else if (values.phoneNumber && values.phoneNumber.trim().length === 0) {
+      errors.phoneNumber = "(Empty Field)";
+    } else if (!phone_pattern.test(values.phoneNumber)) {
+      errors.phoneNumber = "(Invalid Phone Number)";
+    }
   
     //for email
     let email_pattern =
