@@ -26,7 +26,7 @@ const page = () => {
             advocates, and value seekers.
           </p>
           <Link href="/login/page.js">
-            <button className="bg-[#5F41E4] text-white font-semibold px-6 py-3 rounded-lg hover:bg-green-700 transition">
+            <button className="bg-[#5F41E4] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#4730aa] transition">
               Get Started
             </button>
           </Link>
@@ -163,7 +163,7 @@ const page = () => {
               </p>
               <a
               href="/shop"
-              className="bg-[#5F41E4] hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-300"
+              className="bg-[#5F41E4] hover:bg-[#4730aa] text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-300"
               >
               Start Shopping
               </a>

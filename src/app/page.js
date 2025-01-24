@@ -5,87 +5,105 @@ import Footer from './components/Footer';
 
 const page = () => {
   const products = [
-    { id: 1, name: "Woolen sweater", category: "Clothing", price: 900 },
-    { id: 2, name: "Woolen sweater", category: "Clothing", price: 908 },
+    { id: 1, name: "Woolen sweater", category: "Clothing", price: 900, image:"/image/photo.webp" },
+    { id: 2, name: "Woolen sweater", category: "Clothing", price: 908, image:"/image/photo.webp" },
     { id: 3, name: "Woolen sweater", category: "Clothing", price: 903 },
     { id: 4, name: "Woolen sweater", category: "Clothing", price: 903 },
-    { id: 5, name: "Woolen sweater", category: "Clothing", price: 903 },
-    { id: 6, name: "Woolen sweater", category: "Clothing", price: 903 },
-    { id: 7, name: "Woolen sweater", category: "Clothing", price: 903 },
-    { id: 8, name: "Woolen sweater", category: "Clothing", price: 903 },
-    { id: 9, name: "Woolen sweater", category: "Clothing", price: 903 },
-    { id: 10, name: "Woolen sweater", category: "Clothing", price: 903 },
-    { id: 11, name: "Woolen sweater", category: "Clothing", price: 903 },
-    { id: 12, name: "Woolen sweater", category: "Clothing", price: 903 },
+    { id: 5, name: "Woolen sweater", category: "Clothing", price: 903 }
 
+   
    
   ];
   return (
     <div className="bg-gray-50 min-h-screen">
-    {/* Navbar */}
-    <header className="fixed w-full bg-[#5F41E4] text-white p-4 shadow-md">
-      <div className=" flex justify-between items-center">
-    <div className='flex items-center'>
-
-      <h1 className=" text-2xl font-bold">Thrift Store</h1>
-    </div>
-       <div className='flex items-center'>
-         <nav>
-          <ul className="flex space-x-6">
-            <Link href="#" className="hover:text-gray-300">About Us</Link>
-            <Link href="/login" className="hover:text-gray-300">Login</Link>
-          
-          </ul>
-        </nav>
-        </div>
-      </div>
-    </header>
-
-
-   
-{/*about us*/}
-    <section id="about" className="py-10  bg-[#EAE7F0] ">
-  <div className="max-w-screen-xl mx-auto text-center px-4 mt-20">
-    <h3 className="pb-10 text-2xl font-bold text-gray-800">
-      See some of the latest Items arrivals...
-    </h3>
-    <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-        {products.map((product) => (
-          <div
-            key={product.id}
-            className="bg-white shadow rounded-lg flex flex-col items-center justify-center  hover:bg-slate-100"
-          >
-          {product.image ? (
-  <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-    <Image
-      src={`assets/${product.image}`}  // Updated path
-      alt={product.name}
-      
-      width={245} // Specify width and height
-      height={500} // Specify width and height
-      className="absolute inset-0 w-full h-full object-cover mb-4"
-    />
-  </div>
-) : (
-  <div className="w-full h-40 bg-gray-300 mb-4"></div>
-)}
-
-
-            <h3 className="text-lg font-semibold">{product.name}</h3>
-            <p className="text-sm text-gray-500">{product.category}</p>
-            <p className="text-lg font-bold mt-2">Rs. {product.price}</p>
+     {/* Navbar */}
+     <header className="fixed top-0 left-0 w-full bg-[#5F41E4] text-white p-4 shadow-md z-50">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center">
+            <h1 className="text-2xl font-bold">Thrift Store</h1>
           </div>
-        ))}
-      </div>
-    </div>
-    <div className="flex items-center justify-center mt-6">
-      <a
-        href="/login"
-        className="inline-block bg-[#5F41E4] text-white px-6 py-3 rounded-lg hover:bg-[#4a32b9] focus:ring-4 focus:ring-[#5F41E4] focus:outline-none"
+          <div className="flex items-center">
+            <nav>
+              <ul className="flex space-x-6">
+                <Link href="/aboutus" className="hover:text-gray-300">
+                  About Us
+                </Link>
+                <Link href="/login" className="hover:text-gray-300">
+                  Login
+                </Link>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      {/* Add margin to prevent overlap */}
+      <div className="mt-16"></div>
+
+      {/* Photo Section */}
+      <div
+        id="home"
+        className="relative    h-[605px] flex items-center bg-cover bg-center bg-no-repeat  overflow-hidden"
+        style={{ backgroundImage: "url('/image/cloth22.PNG')" }}
       >
-        Login to see more..
-      </a>
+        <section className="container mx-auto px-6 text-center">
+          <div className='' >
+
+          <h2 className="text-5xl text-shadow-xl font-extrabold mb-4 animate-fade-in ">
+          Style Sustainably, Shop Affordably          </h2>
+          <p className="text-lg text-shadow-xl mb-6 animate-slide-up">
+            Find pre-loved treasures online
+            with fast delivery,Affordable price and trusted service.
+          </p>
+          </div>
+          <Link
+            href="/login"
+            className="bg-[#5F41E4] hover:bg-[#533cbb] text-gray-800 px-6 py-3 rounded font-bold transition duration-300 animate-bounce"
+          >
+            Shop Now
+          </Link>
+        </section>
+      </div>
+   
+{/* About Us Section */}
+<section id="about" className="py-16 bg-gradient-to-r from-[#EAE7F0] via-[#F7F4FA] to-[#EAE7F0]">
+  <div className="max-w-screen-xl mx-auto px-6">
+    <h3 className="text-4xl font-bold text-gray-800 text-center mb-12">
+      Latest Items Arrivals
+    </h3>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">
+      {products.map((product) => (
+        <div
+          key={product.id}
+          className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+        >
+          {product.image ? (
+            <div className="relative w-full h-48">
+              <Image
+                src={product.image}
+                alt={product.name}
+                layout="fill"
+                className="object-cover"
+              />
+            </div>
+          ) : (
+            <div className="w-full h-48 bg-gray-300"></div>
+          )}
+          <div className="p-4 text-center">
+            <h3 className="text-lg font-semibold text-gray-700">{product.name}</h3>
+            <p className="text-sm text-gray-500">{product.category}</p>
+            <p className="text-xl font-bold text-gray-900 mt-2">Rs. {product.price}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div className="mt-10 text-center">
+      <Link
+        href="/login"
+        className="bg-[#5F41E4] text-white px-6 py-3 rounded-lg text-lg font-medium hover:bg-[#4a32b9] transition-all duration-300"
+      >
+        Login to see more
+      </Link>
     </div>
   </div>
 </section>
@@ -112,15 +130,15 @@ const page = () => {
           We only select quality items. Only 60% of items that we receive are accepted on average.
         </p>
       </div>
-      {/* <div className="ml-4">
+      <div className="ml-4">
         <Image
-         src="/public/image/quality finds.webp"
+         src="/image/qualityfinds.webp"
                 alt="Google"
           width={50}
           height={50}
           className="rounded-full"
           />
-      </div> */}
+      </div>
     </div>
 
     <div className="bg-[#B3DFC7] p-6 rounded-lg flex items-center w-50 mr-10">
@@ -132,11 +150,11 @@ const page = () => {
       </div>
       <div className="ml-4">
         <Image
-         src="assets/google.svg"
+         src="/image/sustainablestyle.jpg"
                 alt="Google"
           width={50}
           height={50}
-          className="rounded-sm"
+          className="rounded-full"
           />
       </div>
     </div>

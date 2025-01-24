@@ -59,6 +59,50 @@ export const items = [
     smallImage1: "/image/jacket-1.jpg", // Small Image 1
     smallImage2: "/image/jacket-2.jpg", // Small Image 2
     smallImage3: "/image/jacket-3.jpg", // Small Image 3
+  },  {
+    id: 2,
+    name: "Shirt",
+    price: 400,
+    category: "Clothings",
+    size: "M",
+    condition: "7/10",
+    discolor: "None",
+    tear: "None",
+    description: "Casual shirt with a comfortable fit and stylish design.",
+    mainImage: "/image/tshirt.webp", // Corrected the mainImage path
+    smallImage1: "/image/shirt-1.jpg", // Small Image 1
+    smallImage2: "/image/shirt-2.jpg", // Small Image 2
+    smallImage3: "/image/shirt-3.jpg", // Small Image 3
+  },
+  {
+    id: 2,
+    name: "Shirt",
+    price: 400,
+    category: "Clothings",
+    size: "M",
+    condition: "7/10",
+    discolor: "None",
+    tear: "None",
+    description: "Casual shirt with a comfortable fit and stylish design.",
+    mainImage: "/image/tshirt.webp", // Corrected the mainImage path
+    smallImage1: "/image/shirt-1.jpg", // Small Image 1
+    smallImage2: "/image/shirt-2.jpg", // Small Image 2
+    smallImage3: "/image/shirt-3.jpg", // Small Image 3
+  },
+  {
+    id: 2,
+    name: "Shirt",
+    price: 400,
+    category: "Clothings",
+    size: "M",
+    condition: "7/10",
+    discolor: "None",
+    tear: "None",
+    description: "Casual shirt with a comfortable fit and stylish design.",
+    mainImage: "/image/tshirt.webp", // Corrected the mainImage path
+    smallImage1: "/image/shirt-1.jpg", // Small Image 1
+    smallImage2: "/image/shirt-2.jpg", // Small Image 2
+    smallImage3: "/image/shirt-3.jpg", // Small Image 3
   },
   // Add more clothing items here as needed...
 ];

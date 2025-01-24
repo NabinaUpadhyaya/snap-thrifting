@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import Validation from "./signupValidation";
 import { MdVisibility, MdOutlineEmail, MdVisibilityOff } from "react-icons/md";
+import Footer from "../components/Footer";
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const toggleVisibility = () => setShowPassword((prevState) => !prevState);
@@ -182,6 +183,7 @@ const Signup = () => {
           </p>
         </div>
       </div>
+    
     </div>
   );
 };
