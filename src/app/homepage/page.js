@@ -69,10 +69,10 @@ const Page = () => {
               key={index}
               className="bg-gray-200 rounded-lg p-4 mb-5 mx-4 flex flex-col items-center shadow hover:shadow-md"
             >
-              {/* Display item image */}
+              {/* Display item mainimage */}
               <div className="relative w-full h-60 mb-4">
                 <img
-                  src={item.image}
+                  src={item.mainImage}
                   alt={item.name}
                   className="absolute inset-0 w-full h-full object-cover "
                 />
@@ -83,10 +83,10 @@ const Page = () => {
               <p className="text-lg text-[#5F41E4] font-semibold">{item.price}</p>
              
              {/* DETAILS BUTTTON */}
-              <p className="text-[#5F41E4] mt-3 hover:underline  ">
+              <p className="text-[#5F41E4] mt-3 hover:underline">
             <a href="/Details">
 
-   Details→
+              Details→
             </a>
           </p>
             </div>
@@ -159,7 +159,10 @@ const Page = () => {
       </div>
 
       <VerifiedSection />
-      <Footer />
+
+      <div className="mt-20"> 
+        <Footer />
+      </div>
     </div>
   );
 };
