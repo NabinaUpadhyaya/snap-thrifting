@@ -9,7 +9,7 @@ export const items = [
     discolor: "None",
     tear: "None",
     description: "Stylish wristwatch with a leather strap.",
-    mainImage: "/image/watch1.jpeg", // Main image
+    image: "/image/watch.jpg", // Main image
     smallImage1: "/image/watch1-1.jpg", // Small Image 1
     smallImage2: "/image/watch1-2.jpg", // Small Image 2
     smallImage3: "/image/watch1-3.jpg", // Small Image 3
@@ -24,7 +24,7 @@ export const items = [
     discolor: "None",
     tear: "None",
     description: "Trendy sunglasses to protect your eyes in style.",
-    mainImage: "/image/sunglasses1.jpeg",
+    image: "/image/glass.jpeg",
     smallImage1: "/image/sunglasses1-1.jpg", // Small Image 1
     smallImage2: "/image/sunglasses1-2.jpg", // Small Image 2
     smallImage3: "/image/sunglasses1-3.jpg", // Small Image 3
@@ -39,7 +39,7 @@ export const items = [
     discolor: "None",
     tear: "None",
     description: "Classic leather wallet with multiple compartments.",
-    mainImage: "/image/wallet1.jpeg",
+    image: "/image/pur.jpeg",
     smallImage1: "/image/wallet1-1.jpg", // Small Image 1
     smallImage2: "/image/wallet1-2.jpg", // Small Image 2
     smallImage3: "/image/wallet1-3.jpg", // Small Image 3
@@ -54,9 +54,54 @@ export const items = [
     discolor: "None",
     tear: "None",
     description: "Elegant gold-plated necklace with intricate design.",
-    mainImage: "/image/necklace1.jpeg",
+    image: "/image/ne.webp",
     smallImage1: "/image/necklace1-1.jpg", // Small Image 1
     smallImage2: "/image/necklace1-2.jpg", // Small Image 2
     smallImage3: "/image/necklace1-3.jpg", // Small Image 3
+  },
+  {
+    id: 7,
+    name: "Bracelet",
+    price: 1000,
+    category: "Accessories",
+    size: "Adjustable",
+    condition: "9.9/10",
+    discolor: "None",
+    tear: "None",
+    description: "Stylish silver bracelet with a sleek, minimalist design.",
+    image: "/image/bracelet.jpeg",
+    smallImage1: "/image/bracelet1-1.jpg", // Small Image 1
+    smallImage2: "/image/bracelet1-2.jpg", // Small Image 2
+    smallImage3: "/image/bracelet1-3.jpg", // Small Image 3
+  },
+  {
+    id: 8,
+    name: "Ring",
+    price: 900,
+    category: "Accessories",
+    size: "7",
+    condition: "9.8/10",
+    discolor: "None",
+    tear: "None",
+    description: "Elegant gold-plated ring with embedded gemstones.",
+    image: "/image/ring.jpg",
+    smallImage1: "/image/ring1-1.jpg", // Small Image 1
+    smallImage2: "/image/ring1-2.jpg", // Small Image 2
+    smallImage3: "/image/ring1-3.jpg", // Small Image 3
+  },
+  {
+    id: 9,
+    name: "Earrings",
+    price: 1100,
+    category: "Accessories",
+    size: "One Size",
+    condition: "9.6/10",
+    discolor: "None",
+    tear: "None",
+    description: "Dainty pearl drop earrings perfect for any occasion.",
+    image: "/image/ear.webp",
+    smallImage1: "/image/earrings1-1.jpg", // Small Image 1
+    smallImage2: "/image/earrings1-2.jpg", // Small Image 2
+    smallImage3: "/image/earrings1-3.jpg", // Small Image 3
   },
 ];

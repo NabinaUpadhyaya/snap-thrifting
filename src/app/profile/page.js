@@ -10,24 +10,39 @@ const Page = () => {
         <Header/>
       </div>
       {/* Banner Section */}
-      <section className="relative w-full h-64  bg-gray-200 shadow-md">
-        <div className="absolute inset-0 flex items-center justify-between px-8">
-          {/* Left Image */}
-          <img
-            src="/images/banner-left.jpg"
-            alt="Left Banner"
-            className="h-36 w-36 object-cover rounded-lg shadow-lg"
-          />
-          {/* Center Image */}
-          <img
-            src="/images/banner-center.jpg"
-            alt="Center Banner"
-            className="h-44 w-44 object-cover rounded-lg shadow-lg"
-          />
-          {/* Right Text */}
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-700">SNAP Thrifting</h1>
-            <p className="text-sm text-gray-500">
+      <section className="relative w-full h-64 bg-gray-200 shadow-md overflow-hidden">
+        {/* Blurred Background Image */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "url('/image/staticimg/bg1.jpeg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            filter: "blur(8px)",
+            clipPath: "inset(0)", // Ensures the blur stays within the section bounds
+          }}
+        >
+        </div>
+
+         {/* Overlay Content */}
+        <div className="relative flex items-center justify-center h-full">
+          {/* Overlapping Images */}
+          <div className="relative transform translate-y-6"> {/* Move both images down */}
+            <img
+              src="/image/staticimg/bg1.jpeg"
+              alt="right"
+              className="h-48 w-48 object-cover rounded-lg shadow-lg transform translate-x-12"
+            />
+            <img
+              src="/image/staticimg/right.webp"
+              alt="left"
+              className="h-44 w-44 object-cover rounded-lg shadow-lg transform -translate-x-12 -translate-y-10 absolute top-0 left-2"
+            />
+          </div>
+            {/* Center Text */}
+         <div className="ml-32 text-center">
+            <h1 className="text-4xl font-bold text-gray-800">SNAP Thrifting</h1>
+            <p className="text-sm text-gray-600 mt-2">
               Make fashion affordable, sustainable, and personal
             </p>
           </div>

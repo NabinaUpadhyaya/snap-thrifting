@@ -9,14 +9,14 @@ export const items = [
     discolor: "None",
     tear: "Minor scuff on sole",
     description: "Comfortable and durable running shoes for daily wear.",
-    mainImage: "/images/shoes1.jpeg", // Main image
+    image: "/image/runshoe.jpg", // Main image
     smallImage1: "/images/shoes1-1.jpg", // Small Image 1
     smallImage2: "/images/shoes1-2.jpg", // Small Image 2
     smallImage3: "/images/shoes1-3.jpg", // Small Image 3
   },
   {
     id: 3,
-    name: "Leather Boots",
+    name: "Pink Dr.martens shoe",
     price: 4500,
     category: "Shoes",
     size: "44",
@@ -24,7 +24,7 @@ export const items = [
     discolor: "None",
     tear: "None",
     description: "High-quality leather boots for formal occasions.",
-    mainImage: "/images/boots1.jpeg", // Main image
+    image: "/image/boots.jpg", // Main image
     smallImage1: "/images/boots1-1.jpg", // Small Image 1
     smallImage2: "/images/boots1-2.jpg", // Small Image 2
     smallImage3: "/images/boots1-3.jpg", // Small Image 3

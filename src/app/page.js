@@ -7,11 +7,11 @@ import Footer from './components/Footer';
 
 const page = () => {
   const products = [
-    { id: 1, name: "Woolen sweater", category: "Clothing", price: 900, image:"/image/photo.webp" },
-    { id: 2, name: "Woolen sweater", category: "Clothing", price: 908, image:"/image/photo.webp" },
-    { id: 3, name: "Woolen sweater", category: "Clothing", price: 903 },
-    { id: 4, name: "Woolen sweater", category: "Clothing", price: 903 },
-    { id: 5, name: "Woolen sweater", category: "Clothing", price: 903 }
+    { id: 1, name: "Woolen sweater", category: "Clothing", price: 900, image:"/image/woolensweater.jpg" },
+    { id: 2, name: "Caps", category: "Accessories", price: 1000, image:"/image/caps.jpg" },
+    { id: 3, name: "Hoodie- Gray", category: "Clothing", price: 800, image:"/image/greyhoodie.jpg" },
+    { id: 4, name: "Pink Dr.martens shoe", category: "Shoes", price: 4500,image:"/image/boots.jpg" },
+    { id: 5, name: "Mixed Ring Collection", category: "Accessories", price: 900,image:"/image/ring.jpg" }
 
    
    
@@ -54,7 +54,7 @@ const page = () => {
       <div
         id="home"
         className="relative    h-[605px] flex items-center bg-cover bg-center bg-no-repeat  overflow-hidden"
-        style={{ backgroundImage: "url('/image/cloth22.PNG')" }}
+        style={{ backgroundImage: "url('/image/staticimg/bgg1.jpg')" }}
       >
         <section className="container mx-auto px-6 text-center">
           <div className='' >
