@@ -29,7 +29,7 @@ const Header = () => {
         href="/howitworks"
         className="px-4 py-2 text-[#5F41E4] bg-white rounded-md hover:bg-gray-300 flex items-center">
           <AiOutlineShop size={20} className="mr-2" />
-          Start Selling'
+          Start Selling
         </Link>
        
           <Link
