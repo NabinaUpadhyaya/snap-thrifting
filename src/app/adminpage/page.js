@@ -253,7 +253,7 @@ useEffect(() => {
                 name="productSize"
                 value={formData.productSize}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#5F41E4] focus:outline-none"
+                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#5F41E4] focus:outline-none "
                 required
               >
                 <option value="" disabled>
