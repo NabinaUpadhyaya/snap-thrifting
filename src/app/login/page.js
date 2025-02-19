@@ -4,79 +4,62 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import Image from "next/image";
 import Validation from "./loginValidation";
-
 import { MdVisibility, MdOutlineEmail, MdVisibilityOff } from "react-icons/md";
+import Cookies from "js-cookie"; // Import js-cookie
 
-const page = () => {
+const Page = () => {
   const [showPassword, setShowPassword] = useState(false);
   const toggleVisibility = () => setShowPassword((prevState) => !prevState);
   const router = useRouter();
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState({});
 
   const handleInput = (event) => {
-    console.log("Input value:", event.target.value); // Log the value being inputted
     setFormData({ ...formData, [event.target.name]: event.target.value });
     setError((prevError) => ({ ...prevError, [event.target.name]: "" }));
   };
 
   async function handleSubmit(event) {
     event.preventDefault();
-    // Validate form data
     const validationErrors = Validation(formData);
-    console.log("Validation Errors:", validationErrors); // Log validation errors for debugging
     setError(validationErrors);
 
-    // Check if validation errors exist
-    if (validationErrors && Object.keys(validationErrors).length > 0) {
-      console.log("eta aaye ");
-      // If there are errors, stop further execution (i.e., no API call)
-      return;
+    if (Object.keys(validationErrors).length > 0) {
+      return; // Stop execution if validation errors exist
     }
 
     try {
-      console.log("Sending request to the server with form data:", formData); // Log the form data
       const res = await axios.post(
         "https://snap-thrift-backend.onrender.com/auth/login",
         formData,
         {
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true, // ✅ Ensures token is stored in cookies
         }
       );
-      console.log("Backend Response:", res.data); // Log the full response from the backend
 
       if (res.data.success) {
-        // Redirect to homepage if login is successful
-        router.push("/homepage");
+        console.log("token here", res.data);
+        // Store the token in cookies after successful login
+        Cookies.set("accessToken", res.data.data.accessToken); // Store the token with 1 day expiration
+        router.push("/homepage"); // ✅ Redirect to homepage after successful login
       } else {
-        // If login fails, set the general error
         setError({ general: res.data.message || "Login failed. Try again." });
       }
     } catch (err) {
-      // console.error("Error during login:", err); // Log the whole error
-      if (err.response) {
-        // console.error("Error response:", err.response); // Log the response part if available
-        setError({
-          general:
-            err.response.data.message || "An error occurred during login.",
-        });
-      } else {
-        setError({
-          general: err.message || "An error occurred during login.",
-        });
-      }
+      setError({
+        general:
+          err.response?.data?.message || "An error occurred during login.",
+      });
     }
   }
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#5F41E4]">
-      <div className="bg-[#fff] p-8 rounded-lg shadow-lg w-80">
-        <h1 className="text-xl font-bold text-center text-black mb-4">Log in with</h1>
+      <div className="bg-white p-8 rounded-lg shadow-lg w-80">
+        <h1 className="text-xl font-bold text-center text-black mb-4">
+          Log in with
+        </h1>
 
         {/* Login form */}
         <form onSubmit={handleSubmit}>
@@ -85,7 +68,7 @@ const page = () => {
               type="email"
               name="email"
               placeholder="Enter your email"
-              onChange={handleInput} // Handle input change
+              onChange={handleInput}
               className="w-full text-black px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#5F41E4]"
               required
             />
@@ -94,12 +77,12 @@ const page = () => {
               <span className="text-xs text-red-500 italic">{error.email}</span>
             )}
           </div>
-          <div className="mb-4 relative  ">
+          <div className="mb-4 relative">
             <input
               type={showPassword ? "text" : "password"}
               name="password"
               placeholder="Enter your password"
-              onChange={handleInput} // Handle input change
+              onChange={handleInput}
               className="w-full px-4 text-black py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#5F41E4]"
               required
             />
@@ -138,12 +121,12 @@ const page = () => {
             Log In
           </button>
           <div className="text-center mb-4">or</div>
-          {/* Login buttons */}
+
+          {/* Login with Google */}
           <div className="flex justify-between gap-4 mb-4">
             <button className="flex items-center justify-center w-80 px-4 py-2 border rounded-md bg-[#D5CBFF] hover:bg-[#D5CBFF]">
-              {/* WITHOUT IMPORTING */}
               <Image
-                src="assets/google.svg"
+                src="/assets/google.svg"
                 alt="Google"
                 className="h-5 mr-2"
                 width={20}
@@ -154,7 +137,8 @@ const page = () => {
           </div>
         </form>
 
-        <div className="text-center text-sm mt-4 ">
+        {/* Signup & Back to Home */}
+        <div className="text-center text-sm mt-4">
           <p>
             Don’t have an account?{" "}
             <a
@@ -173,4 +157,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

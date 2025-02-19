@@ -59,7 +59,7 @@ const Page = () => {
           </button>
         </div> */}
         <div className="mt-4">
-          <h2 className="text-xl font-semibold">Esther Tamang Upadhyaya</h2>
+          <h2 className="text-xl font-semibold">Esther Tamang </h2>
           <p className="text-gray-500">esther@gmail.com</p>
           <p className="text-gray-500">Dahachwok/Godawari</p>
         </div>

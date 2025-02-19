@@ -74,5 +74,5 @@ export const items = [
     smallImage2: "/image/bracelet1-2.jpg", // Small Image 2
     smallImage3: "/image/bracelet1-3.jpg", // Small Image 3
   },
-
+ 
 ];
