@@ -11,6 +11,7 @@ import {
   FaBoxOpen,
   FaImages,
 } from "react-icons/fa";
+import Link from "next/link";
 
 const Page = () => {
   const [stats, setStats] = useState({
@@ -142,15 +143,19 @@ useEffect(() => {
         <span className="italic text-white">Snap-Thrift</span>
       </div>
         <ul>
-          <li className="mb-4 hover:text-[#3b2796] flex items-center">
-            <FaUsers className="mr-2 " /> Customers
-          </li>
-          <li className="mb-4 hover:text-[#3b2796] flex items-center">
-            <FaProjectDiagram className="mr-2 " /> Package Requests
-          </li>
-          <li className="mb-4 hover:text-[#3b2796] flex items-center">
-            <FaShoppingCart className="mr-2 " /> Orders
-          </li>
+          <Link 
+          href="/Admins/manageproducts" className="mb-4 hover:text-[#3b2796] flex items-center">
+            <FaUsers className="mr-2 " /> Manage Products
+          </Link>
+          <Link 
+          href="/Admins/package" className="mb-4 hover:text-[#3b2796] flex items-center">
+            <FaUsers className="mr-2 " /> Package Requests
+          </Link>
+          <Link 
+          href="/Admins/orders" className="mb-4 hover:text-[#3b2796] flex items-center">
+            <FaUsers className="mr-2 " />  Orders
+          </Link>
+         
         </ul>
       </div>
 
