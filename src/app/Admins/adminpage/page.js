@@ -1,9 +1,8 @@
-"use client";
+"use client"
 import React, { useState, useEffect } from "react";
 import {
   FaUsers,
-  FaProjectDiagram,
-  FaShoppingCart,
+ 
   FaTshirt,
   FaTag,
   FaInfoCircle,
@@ -11,6 +10,10 @@ import {
   FaBoxOpen,
   FaImages,
 } from "react-icons/fa";
+import { IoMdLogOut } from "react-icons/io";
+import Link from "next/link";
+
+
 
 const Page = () => {
   const [stats, setStats] = useState({
@@ -65,6 +68,17 @@ useEffect(() => {
     productImage1: null,
     productImage2: null,
   });
+const [showConfirm, setShowConfirm] = useState(false);
+ 
+
+  const handleLogout = () => {
+    setShowConfirm(false);
+   
+  };  
+
+  const handleCancel = () => {
+    setShowConfirm(false); // Close the confirmation popup
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -142,15 +156,59 @@ useEffect(() => {
         <span className="italic text-white">Snap-Thrift</span>
       </div>
         <ul>
-          <li className="mb-4 hover:text-[#3b2796] flex items-center">
-            <FaUsers className="mr-2 " /> Customers
-          </li>
-          <li className="mb-4 hover:text-[#3b2796] flex items-center">
-            <FaProjectDiagram className="mr-2 " /> Package Requests
-          </li>
-          <li className="mb-4 hover:text-[#3b2796] flex items-center">
-            <FaShoppingCart className="mr-2 " /> Orders
-          </li>
+          <Link 
+          href="/Admins/manageproducts" className="mb-4 hover:text-[#3b2796] flex items-center">
+            <FaUsers className="mr-2 " /> Manage Products
+          </Link>
+          <Link 
+          href="/Admins/package" className="mb-4 hover:text-[#3b2796] flex items-center">
+            <FaUsers className="mr-2 " /> Package Requests
+          </Link>
+          <Link 
+          href="/Admins/orders" className="mb-4 hover:text-[#3b2796] flex items-center">
+            <FaUsers className="mr-2 " />  Orders
+          </Link>
+        
+     
+      <div>
+      {/* Log Out Link */}
+      <button
+        className="mb-4 hover:text-[#3b2796] flex items-center"
+        onClick={() => setShowConfirm(true)} // Show confirmation popup
+      >
+        <IoMdLogOut className="mr-2" /> Log Out
+      </button>
+
+      {/* Confirmation Popup */}
+      {showConfirm && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg">
+            <p className="mb-4 text-black">Are you sure you want to logout?</p>
+            <div className="flex justify-between  ">
+             
+              {/* Yes button */}
+              <Link
+              href="/signup"
+                className="bg-gray-500 text-white px-4 m-2 w-full py-2 rounded-lg hover:bg-[#3b2796]"
+                onClick={handleLogout}
+              >
+                Yes
+              </Link>
+               {/* No button */}
+               <button
+              
+                className="bg-[#5F41E4] text-white px-4 py-2 m-2 w-full  rounded-lg hover:bg-[#3b2796]"
+                onClick={handleCancel}
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+    
+    </div>
         </ul>
       </div>
 

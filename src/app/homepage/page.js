@@ -130,7 +130,7 @@ const Homepage = () => {
                 <p className="text-lg text-[#5F41E4] font-semibold">${item.price}</p>
 
                 <p className="text-[#5F41E4] mt-3 hover:underline cursor-pointer">
-                  <Link href={`/Details?id=${item._id}`}>Details →</Link>
+                  <Link href={`/Details/${item._id}`}>Details →</Link>
                 </p>
               </div>
             ))}

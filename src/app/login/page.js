@@ -5,7 +5,7 @@ import axios from "axios";
 import Image from "next/image";
 import Validation from "./loginValidation";
 import { MdVisibility, MdOutlineEmail, MdVisibilityOff } from "react-icons/md";
-import Cookies from "js-cookie"; // Import js-cookie
+import Cookies from "js-cookie";// Import js-cookie
 
 const Page = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -116,14 +116,14 @@ const Page = () => {
 
           <button
             type="submit"
-            className="w-full bg-[#5F41E4] text-[#D5CBFF] font-bold py-2 px-4 rounded-md hover:bg-[#5F41E4]"
+            className="w-full bg-[#5F41E4] text-[#D5CBFF] font-bold py-2 px-4 rounded-md hover:bg-[#5038b9]"
           >
             Log In
           </button>
-          <div className="text-center mb-4">or</div>
+          {/* <div className="text-center mb-4">or</div> */}
 
           {/* Login with Google */}
-          <div className="flex justify-between gap-4 mb-4">
+          {/* <div className="flex justify-between gap-4 mb-4">
             <button className="flex items-center justify-center w-80 px-4 py-2 border rounded-md bg-[#D5CBFF] hover:bg-[#D5CBFF]">
               <Image
                 src="/assets/google.svg"
@@ -134,7 +134,7 @@ const Page = () => {
               />
               Continue with Google
             </button>
-          </div>
+          </div> */}
         </form>
 
         {/* Signup & Back to Home */}
