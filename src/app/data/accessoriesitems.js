@@ -74,34 +74,5 @@ export const items = [
     smallImage2: "/image/bracelet1-2.jpg", // Small Image 2
     smallImage3: "/image/bracelet1-3.jpg", // Small Image 3
   },
-  {
-    id: 8,
-    name: "Ring",
-    price: 900,
-    category: "Accessories",
-    size: "7",
-    condition: "9.8/10",
-    discolor: "None",
-    tear: "None",
-    description: "Elegant gold-plated ring with embedded gemstones.",
-    image: "/image/ring.jpg",
-    smallImage1: "/image/ring1-1.jpg", // Small Image 1
-    smallImage2: "/image/ring1-2.jpg", // Small Image 2
-    smallImage3: "/image/ring1-3.jpg", // Small Image 3
-  },
-  {
-    id: 9,
-    name: "Earrings",
-    price: 1100,
-    category: "Accessories",
-    size: "One Size",
-    condition: "9.6/10",
-    discolor: "None",
-    tear: "None",
-    description: "Dainty pearl drop earrings perfect for any occasion.",
-    image: "/image/ear.webp",
-    smallImage1: "/image/earrings1-1.jpg", // Small Image 1
-    smallImage2: "/image/earrings1-2.jpg", // Small Image 2
-    smallImage3: "/image/earrings1-3.jpg", // Small Image 3
-  },
+ 
 ];

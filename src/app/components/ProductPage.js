@@ -1,84 +1,90 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from "react";
+import useAuth from "./useAuth"; // Import your custom useAuth hook
+import Cookies from 'js-cookie';
 
-const ProductPage = () => {
-  // Define a state variable to store the selected image
-  const [selectedImage, setSelectedImage] = useState("/image/dressfront.jpg");
+const ProductPage = ({ productId }) => {
+  const { user, loading } = useAuth(); // Get user data and loading state from the useAuth hook
+  const [product, setProduct] = useState(null);
+  const [error, setError] = useState(null);
 
-  // Function to handle selecting a new image
-  const handleImageClick = (image) => {
-    setSelectedImage(image);
-  };
+  // Fetch product details after the user is authenticated
+  useEffect(() => {
+    if (loading) return; // Wait until loading is complete
+
+    if (!user) {
+      setError("You must be logged in to view product details");
+      return;
+    }
+
+    // Fetch product details from the backend
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(`https://snap-thrift-backend.onrender.com/products/getProductById/${productId}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${Cookies.get("accessToken")}`, // Use the token from cookies
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch product details");
+        }
+
+        const data = await response.json();
+        if (data.success) {
+          setProduct(data.data); // Set the product details in the state
+        } else {
+          setError("Product not found");
+        }
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchProduct();
+  }, [productId, user, loading]); // Dependency array ensures fetch happens after authentication and user is available
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div className="text-center text-red-500">{error}</div>;
+  if (!product) return <div>Loading product details...</div>;
 
   return (
-    <div className="mt-8 flex justify-center">
-      <div className="border border-gray-300 rounded-lg shadow-lg p-6 bg-white w-full max-w-6xl mx-auto">
-        <div className="flex flex-col lg:flex-row">
-          {/* Left Section - Image */}
-          <div className="lg:w-1/2 flex flex-col justify-center items-center">
-            {/* Main Image */}
-            <div className="w-96 h-96 bg-gray-300 rounded-lg mb-4">
-              <img
-                src={selectedImage}
-                alt="One Piece Dress"
-                className="w-full h-full object-cover rounded-lg"
-              />
-            </div>
-
-            {/* Smaller Images */}
-            <div className="flex space-x-4">
-              <div
-                className="w-24 h-24 bg-red-400 rounded-lg cursor-pointer"
-                onClick={() => handleImageClick("/image/dressfront.jpg")}
-              >
-                <img
-                  src="/image/dressfront.jpg"
-                  alt="One Piece Dress1 - mainImage"
-                  className="w-full h-full object-cover rounded-lg"
-                />
-              </div>
-              <div
-                className="w-24 h-24 bg-gray-300 rounded-lg cursor-pointer"
-                onClick={() => handleImageClick("/image/dressback.webp")}
-              >
-                <img
-                  src="/image/dressback.webp"
-                  alt="One Piece Dress2 - Small 1"
-                  className="w-full h-full object-cover rounded-lg"
-                />
-              </div>
-              
-            </div>
-          </div>
-
-          {/* Right Section - Details */}
-          <div className="lg:w-1/2 mt-4 lg:mt-0 lg:ml-6">
-            <h1 className="text-2xl font-bold">One Piece Dress</h1>
-            <p className="text-lg text-gray-700 mt-2">Rs. 500</p>
-            <span className="inline-block bg-green-200 text-green-800 text-sm font-semibold px-2 py-1 rounded-full mt-2">
-              Clothings
-            </span>
-
-            <div className="mt-4">
-              <p><span className="font-semibold">Size:</span> M</p>
-              <p><span className="font-semibold">Condition:</span> Used</p>
-              <p><span className="font-semibold">Discolor:</span> None</p>
-              <p><span className="font-semibold">Tear:</span> None</p>
-            </div>
-
-            {/* Product Description */}
-            <div className="mt-6 p-4 bg-gray-100 rounded-lg">
-              <h2 className="font-semibold">Description</h2>
-              <p>Stylish and comfortable one-piece dress suitable for any occasion.</p>
-            </div>
-
-            {/* Add to Cart Button */}
-            <button className="mt-6 w-auto bg-[#5F41E4] text-white text-xl py-2 px-8 rounded-lg hover:bg-[#452fa3]">
-            + Add To Cart
-            </button>
-          </div>
-        </div>
+    <div className="max-w-4xl mx-auto p-6">
+      <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+      <div className="mb-4">
+        {product.images && product.images.map((image, index) => (
+          <img
+            key={index}
+            src={image.url}
+            alt={product.name}
+            className="w-full h-auto rounded-lg shadow-md"
+          />
+        ))}
+      </div>
+      <div className="mb-4">
+        <p className="text-lg text-gray-700">{product.description}</p>
+      </div>
+      <div className="flex items-center justify-between mb-6">
+        <span className="text-xl font-semibold text-gray-800">Rs. {product.price}</span>
+        <span className="text-sm text-gray-600">Category: {product.category}</span>
+      </div>
+      <div className="flex items-center justify-between mb-6">
+        <span className="text-sm text-gray-600">Size: {product.size || "N/A"}</span>
+        <span className="text-sm text-gray-600">Condition: {product.condition || "N/A"}</span>
+      </div>
+      <div className="mb-6">
+        <h3 className="text-xl font-semibold text-gray-800 mb-2">Additional Details</h3>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>Discoloration: {product.discolor || "None"}</li>
+          <li>Tear: {product.tear || "None"}</li>
+        </ul>
+      </div>
+      <div className="flex justify-center">
+        <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200">
+          Add to Cart
+        </button>
       </div>
     </div>
   );
