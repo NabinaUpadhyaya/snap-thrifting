@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import VerifiedSection from "../components/VerifiedSection";
 import { FaSearch } from "react-icons/fa";
 import useAuth from "../components/useAuth";
-import Cookies from "js-cookie"; // Import useAuth hook
+// import Cookies from "js-cookie"; // Import useAuth hook
 import Link from "next/link";
 
 const Homepage = () => {
