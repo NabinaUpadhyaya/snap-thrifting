@@ -9,19 +9,19 @@ const ProductPage = ({ productId }) => {
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
 
-  // Fetch product details after the user is authenticated
-  useEffect(() => {
-    if (loading) return; // Wait until loading is complete
+  // // Fetch product details after the user is authenticated
+  // useEffect(() => {
+  //   if (loading) return; // Wait until loading is complete
 
-    if (!user) {
-      setError("You must be logged in to view product details");
-      return;
-    }
+  //   if (!user) {
+  //     setError("You must be logged in to view product details");
+  //     return;
+  //   }
 
     // Fetch product details from the backend
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`https://snap-thrift-backend.onrender.com/products/getProductById/${productId}`, {
+        const response = await fetch(`https://snap-thrift-backend.onrender.com/products/getProductById/:id`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${Cookies.get("accessToken")}`, // Use the token from cookies
@@ -52,7 +52,7 @@ const ProductPage = ({ productId }) => {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+      <h1 className="text-3xl font-bold mb-4">{item.name}</h1>
       <div className="mb-4">
         {product.images && product.images.map((image, index) => (
           <img
@@ -64,21 +64,21 @@ const ProductPage = ({ productId }) => {
         ))}
       </div>
       <div className="mb-4">
-        <p className="text-lg text-gray-700">{product.description}</p>
+        <p className="text-lg text-gray-700">{item.description}</p>
       </div>
       <div className="flex items-center justify-between mb-6">
-        <span className="text-xl font-semibold text-gray-800">Rs. {product.price}</span>
-        <span className="text-sm text-gray-600">Category: {product.category}</span>
+        <span className="text-xl font-semibold text-gray-800">Rs. {item.price}</span>
+        <span className="text-sm text-gray-600">Category: {item.category}</span>
       </div>
       <div className="flex items-center justify-between mb-6">
-        <span className="text-sm text-gray-600">Size: {product.size || "N/A"}</span>
-        <span className="text-sm text-gray-600">Condition: {product.condition || "N/A"}</span>
+        <span className="text-sm text-gray-600">Size: {item.size || "N/A"}</span>
+        <span className="text-sm text-gray-600">Condition: {item.condition || "N/A"}</span>
       </div>
       <div className="mb-6">
         <h3 className="text-xl font-semibold text-gray-800 mb-2">Additional Details</h3>
         <ul className="list-disc pl-6 space-y-2">
-          <li>Discoloration: {product.discolor || "None"}</li>
-          <li>Tear: {product.tear || "None"}</li>
+          <li>Discoloration: {item.discolor || "None"}</li>
+          <li>Tear: {item.tear || "None"}</li>
         </ul>
       </div>
       <div className="flex justify-center">

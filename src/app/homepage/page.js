@@ -59,7 +59,7 @@ const Homepage = () => {
     <div>
       <Header />
 
-      {/* Welcome Message */}
+      {/* Welcome Message */} 
       {loadingUser ? (
         <div className="text-center py-4 text-lg text-gray-500">Loading user data...</div>
       ) : user ? (
