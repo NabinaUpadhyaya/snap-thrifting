@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import VerifiedSection from "../components/VerifiedSection";
 import { FaSearch } from "react-icons/fa";
 import useAuth from "../components/useAuth";
-// import Cookies from "js-cookie"; // Import useAuth hook
+import Cookies from "js-cookie"; // Import useAuth hook
 import Link from "next/link";
 
 const Homepage = () => {
@@ -130,7 +130,7 @@ const Homepage = () => {
                 <p className="text-lg text-[#5F41E4] font-semibold">${item.price}</p>
 
                 <p className="text-[#5F41E4] mt-3 hover:underline cursor-pointer">
-                  <Link href={`/Details?id=${item._id}`}>Details →</Link>
+                  <Link href={`/Details/${item._id}`}>Details →</Link>
                 </p>
               </div>
             ))}

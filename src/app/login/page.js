@@ -5,7 +5,7 @@ import axios from "axios";
 import Image from "next/image";
 import Validation from "./loginValidation";
 import { MdVisibility, MdOutlineEmail, MdVisibilityOff } from "react-icons/md";
-// import Cookies from "js-cookie";// Import js-cookie
+import Cookies from "js-cookie";// Import js-cookie
 
 const Page = () => {
   const [showPassword, setShowPassword] = useState(false);

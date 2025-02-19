@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import ProductPage from '../components/ProductPage';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import ProductPage from '../../components/ProductPage';
 
 const page = () => {
   return (
