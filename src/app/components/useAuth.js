@@ -27,20 +27,11 @@ const useAuth = () => {
           withCredentials: true, // ✅ Ensures token is stored in cookies
         });
 
-        // const data = await res.json();
+    
         console.log("respose eere", res);
         console.log("response vitrra ko data", res.data);
 
-        // const res = await axios.post(
-        //   "https://snap-thrift-backend.onrender.com/auth/login",
-        //   formData,
-        //   {
-        //     headers: { "Content-Type": "application/json" },
-        //     withCredentials: true, // ✅ Ensures token is stored in cookies
-        //   }
-        // );
-
-        // console.log("data here", data);
+       
 
         if (res.data.success) {
           setUser(res.data.data); // Store user details if successful

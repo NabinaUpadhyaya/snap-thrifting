@@ -12,14 +12,7 @@ const Page = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
  
-  const [newProduct, setNewProduct] = useState({
-    name: '',
-    description: '',
-    price: '',
-    category: '',
-    images: ''
-  });
-
+ 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -36,43 +29,71 @@ const Page = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://snap-thrift-backend.onrender.com/products/deleteProduct/${id}`);
-      setProducts(products.filter(product => product._id !== id));
+      await axios.delete(`https://snap-thrift-backend.onrender.com/package/delete/${id}`);
+      setProducts(products.filter((product) => product._id !== id));
     } catch (error) {
-      setError('Error deleting the product.');
+      console.error("Error deleting product:", error);
     }
   };
   return (
-    <div className="flex h-screen bg-gray-50">
-      
-      <main className="flex-1 p-8 overflow-auto bg-gray-100">
-          <section>
-            {/* <h2 className="text-3xl font-semibold text-gray-800 mb-6">Product List</h2> */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-              {products.map((product) => (
-                <div key={product._id} className="border border-gray-200 bg-white p-6 rounded-lg shadow-xl hover:shadow-2xl transition">
-                  <div className="relative w-full h-60 mb-4">
-                  <img
-                    src={product.images[0]?.url || "/placeholder.jpg"}
-                    alt={product.name}
-                    className="absolute inset-0 w-full h-full object-cover rounded-lg"
-                  />
-                </div>
-                  <h3 className="text-xl font-semibold text-gray-800">{product.name}</h3>
-                  <p className="text-sm text-gray-500">{product.category}</p>
-                  <p className="text-lg font-bold text-green-600">${product.price}</p>
-                  <div className="flex justify-center w-full gap-4 mt-4">
-                    <Link href={`/editdetails/${product._id}`} passHref>
-                      <button className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">Edit</button>
-                    </Link>
-                    <button onClick={() => handleDelete(product._id)} className="w-10 bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition">Delete</button>
+    <div className="min-h-screen bg-gray-100 py-12 px-6">
+    <div className="max-w-7xl mx-auto">
+      <h1 className="text-3xl font-bold text-center text-[#5F41E4] mb-8">
+        Product Management
+      </h1>
+      <div className="overflow-hidden bg-white shadow-lg rounded-lg">
+        <table className="min-w-full table-auto">
+          <thead className="bg-[#5F41E4] text-white">
+            <tr>
+              <th className="px-6 py-3 text-left text-xs font-medium uppercase">Image</th>
+              <th className="px-6 py-3 text-left text-xs font-medium uppercase">Product Name</th>
+              <th className="px-6 py-3 text-left text-xs font-medium uppercase">Category</th>
+              <th className="px-6 py-3 text-left text-xs font-medium uppercase">Price</th>
+              <th className="px-6 py-3 text-left text-xs font-medium uppercase">Manage</th>
+            </tr>
+          </thead>
+          <tbody className="bg-white">
+            {products.map((product) => (
+              <tr key={product._id} className="border-t">
+                {/* Image */}
+                <td className="px-6 py-4">
+                  <div className="w-24 h-24">
+                    <img
+                      src={product.images[0]?.url || "/placeholder.jpg"}
+                      alt={product.name}
+                      className="w-full h-full object-cover rounded-lg shadow-md"
+                    />
                   </div>
-                </div>
-              ))}
-            </div>
-          </section>
-      </main>
+                </td>
+
+                {/* Product Name */}
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{product.name}</td>
+
+                {/* Category */}
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{product.category}</td>
+
+                {/* Price */}
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-green-600">Rs. {product.price}</td>
+
+                {/* Actions */}
+                <td className="px-6 py-4 whitespace-nowrap text-sm flex space-x-4">
+                  <Link href="/Admins/editdetail">
+                    <button className="bg-[#5F41E4] text-white mt-4 px-4 py-2 rounded-lg hover:bg-[#5F41E4] transition">Edit</button>
+                  </Link>
+                  <button
+                    onClick={() => handleDelete(product._id)}
+                    className="bg-red-600 text-white mt-4 px-4 py-2 rounded-lg hover:bg-red-700 transition"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
   );
 };
 
