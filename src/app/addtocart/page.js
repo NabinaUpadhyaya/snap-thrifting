@@ -3,9 +3,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import useAuth from "../components/useAuth";
 
 const page = () => {
   const [cartItems, setCartItems] = useState([]); // Store cart items
+  const { user, loading } = useAuth(); // Get user data and loading state from the useAuth hook
+
   // const [loading, setLoading] = useState(true); // Loading state
 
   // Fetch cart items from the backend on component mount

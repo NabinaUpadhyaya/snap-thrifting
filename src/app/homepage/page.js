@@ -127,7 +127,7 @@ const Homepage = () => {
 
                 <h3 className="text-lg font-bold mb-2">{item.name}</h3>
                 <p className="text-sm text-gray-500">{item.category}</p>
-                <p className="text-lg text-[#5F41E4] font-semibold">${item.price}</p>
+                <p className="text-lg text-[#5F41E4] font-semibold">Rs.{item.price}</p>
 
                 <p className="text-[#5F41E4] mt-3 hover:underline cursor-pointer">
                   <Link href={`/Details/${item._id}`}>Details →</Link>

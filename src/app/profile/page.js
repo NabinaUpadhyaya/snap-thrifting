@@ -1,14 +1,24 @@
+"use client";
+
 import React from "react";
 import MainPage from "../components/MainPage"
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import useAuth from "../components/useAuth";
+// import axios from "axios";
+// import Cookies from "js-cookie";
 
 const Page = () => {
+  const { user, loading } = useAuth(); // Get user data and loading state from the useAuth hook
+
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div>
         <Header/>
       </div>
+
+
       {/* Banner Section */}
       <section className="relative w-full h-64 bg-gray-200 shadow-md overflow-hidden">
         {/* Blurred Background Image */}
@@ -59,10 +69,21 @@ const Page = () => {
           </button>
         </div> */}
         <div className="mt-4">
-          <h2 className="text-xl font-semibold">Esther Tamang </h2>
-          <p className="text-gray-500">esther@gmail.com</p>
-          <p className="text-gray-500">Dahachwok/Godawari</p>
-        </div>
+  {loading ? (
+    <p className="text-gray-500">Loading user data...</p>
+  ) : user ? (
+    <>
+      <h2 className="text-xl font-semibold">{user.name}</h2>
+      <p className="text-gray-500">{user.email}</p>
+      <p className="text-gray-500">{user.phoneNumber}</p>
+    </>
+  ) : (
+    <p className="text-gray-500">
+      Please <a href="/login" className="text-blue-600 hover:underline">log in</a> to view your profile.
+    </p>
+  )}
+</div>
+
       </section>
       <div>
 
