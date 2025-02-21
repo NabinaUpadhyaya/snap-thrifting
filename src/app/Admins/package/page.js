@@ -1,66 +1,43 @@
-"use client"
-import React, { useState } from 'react'
+"use client";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-// Dummy Data for Package Requests with more information
-const packageRequests = [
-  {
-    id: 1,
-    customerName: "John Doe",
-    email: "johndoe@example.com",
-    contactNo: "123-456-7890",
-    address: "123 Main Street, Cityville",
-    quantity: 2,
-    offeredPrice: 100,
-   
-  },
-  {
-    id: 2,
-    customerName: "Jane Smith",
-    email: "janesmith@example.com",
-    contactNo: "234-567-8901",
-    address: "456 Elm Street, Townsville",
-    quantity: 1,
-    offeredPrice: 200,
-   
-  },
-  {
-    id: 3,
-    customerName: "Alice Johnson",
-    email: "alicejohnson@example.com",
-    contactNo: "345-678-9012",
-    address: "789 Oak Street, Villagetown",
-    quantity: 3,
-    offeredPrice: 150,
-   
-  }
-];
-
-// ViewDetails Component to display more information about a package
-const ViewDetails = ({ packageRequest }) => {
+// ViewDetails Component to display specific package details
+const ViewDetails = ({ product }) => {
   return (
     <div className="bg-gray-50 p-6 mt-4 rounded-lg border border-gray-200">
-      <div className="space-y-4">
-        
-        <p><strong>Name:</strong> {packageRequest.customerName}</p>
-        <p><strong>Email:</strong> {packageRequest.email}</p>
-        <p><strong>Contact No:</strong> {packageRequest.contactNo}</p>
-        <p><strong>Location:</strong> {packageRequest.address}</p>
-        <p><strong>Quantity:</strong> {packageRequest.quantity}</p>
-        <p><strong>offered Price:</strong> {packageRequest.offeredPrice}</p>
-       
-
-      
-      </div>
+      <p><strong>Name:</strong> {product.name}</p>
+      <p><strong>Email:</strong> {product.email}</p>
+      <p><strong>Contact No:</strong> {product.phoneNumber}</p>
+      <p><strong>Location:</strong> {product.location}</p>
+      <p><strong>Quantity:</strong> {product.quantity}</p>
+      <p><strong>Offered Price:</strong> Rs. {product.price}</p>
     </div>
   );
 };
 
 const Page = () => {
-  const [selectedPackageId, setSelectedPackageId] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const toggleDetails = (id) => {
-    setSelectedPackageId(selectedPackageId === id ? null : id);
-  };
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get("https://snap-thrift-backend.onrender.com/package/getAllPackage");
+        setProducts(response.data.data);
+        setLoading(false);
+      } catch (error) {
+        setError("Error fetching products.");
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <div className="min-h-screen bg-gray-100 py-12 px-6">
@@ -79,17 +56,19 @@ const Page = () => {
               </tr>
             </thead>
             <tbody className="bg-white">
-              {packageRequests.map((packageRequest) => (
-                <tr key={packageRequest.id} className="border-t">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{packageRequest.customerName}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{packageRequest.quantity}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Rs. {packageRequest.offeredPrice}</td>
+              {products.map((product) => (
+                <tr key={product._id} className="border-t">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{product.name}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{product.quantity}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Rs. {product.price}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-[#5F41E4] hover:text-[#3E23A1]">
-                    <button onClick={() => toggleDetails(packageRequest.id)} className="font-medium">
-                      {selectedPackageId === packageRequest.id ? 'Hide Details' : 'View Details'}
+                    <button
+                      onClick={() => setSelectedProduct(selectedProduct === product ? null : product)}
+                      className="font-medium"
+                    >
+                      {selectedProduct === product ? "Hide Details" : "View Details"}
                     </button>
-                    {/* If the package is selected, show the details */}
-                    {selectedPackageId === packageRequest.id && <ViewDetails packageRequest={packageRequest} />}
+                    {selectedProduct === product && <ViewDetails product={product} />}
                   </td>
                 </tr>
               ))}
