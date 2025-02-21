@@ -6,7 +6,7 @@ import { FaTshirt, FaTag, FaInfoCircle, FaImages } from "react-icons/fa";
 import { FiX, FiUser, FiMail, FiPhone } from "react-icons/fi";
 
 const EditProductPage = () => {
-//   const { user, loading } = useAuth(); // Fetch user data
+  const { user, loading } = useAuth(); // Fetch user data
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     productName: "",
