@@ -1,11 +1,10 @@
 "use client";
-import React, { useState } from "react";
+
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import Image from "next/image";
-import Validation from "./loginValidation";
 import { MdVisibility, MdOutlineEmail, MdVisibilityOff } from "react-icons/md";
-import Cookies from "js-cookie";// Import js-cookie
+import Cookies from "js-cookie"; // Import js-cookie
 
 const Page = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,41 +17,50 @@ const Page = () => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
     setError((prevError) => ({ ...prevError, [event.target.name]: "" }));
   };
-
   async function handleSubmit(event) {
     event.preventDefault();
-    const validationErrors = Validation(formData);
-    setError(validationErrors);
-
-    if (Object.keys(validationErrors).length > 0) {
-      return; // Stop execution if validation errors exist
-    }
-
+  
     try {
       const res = await axios.post(
         "https://snap-thrift-backend.onrender.com/auth/login",
         formData,
         {
           headers: { "Content-Type": "application/json" },
-          withCredentials: true, // ✅ Ensures token is stored in cookies
+          withCredentials: true,
         }
       );
-
+  
+      console.log("Login Response:", res.data); // Debugging response
+  
       if (res.data.success) {
-        console.log("token here", res.data);
-        // Store the token in cookies after successful login
-        Cookies.set("accessToken", res.data.data.accessToken); // Store the token with 1 day expiration
-        router.push("/homepage"); // ✅ Redirect to homepage after successful login
+        const { accessToken, user } = res.data.data;
+        const role = user.role; // Extract role from the user object
+        console.log("Token received:", accessToken);
+        console.log("User Role:", role); // Log role to verify
+  
+        Cookies.set("accessToken", accessToken, { expires: 7 });
+        console.log("Token saved to cookies");
+  
+        // Role-based redirection
+        if (role === "admin") {
+          console.log("Redirecting to Admin Page...");
+          router.push("/Admins/adminpage");
+        } else {
+          console.log("Redirecting to User Homepage...");
+          router.push("/homepage");
+        }
       } else {
-        setError({ general: res.data.message || "Login failed. Try again." });
+        console.log("Login failed:", res.data.message);
+        setError(res.data.message || "Invalid email or password.");
       }
     } catch (err) {
+      console.error("Login Error:", err.response?.data || err);
       setError({
-        general:
-          err.response?.data?.message || "An error occurred during login.",
+        general: err.response?.data?.message || "An error occurred during login.",
       });
     }
   }
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#5F41E4]">
@@ -61,8 +69,8 @@ const Page = () => {
           Log in with
         </h1>
 
-        {/* Login form */}
         <form onSubmit={handleSubmit}>
+          {/* Email input */}
           <div className="mb-4 relative">
             <input
               type="email"
@@ -77,6 +85,8 @@ const Page = () => {
               <span className="text-xs text-red-500 italic">{error.email}</span>
             )}
           </div>
+
+          {/* Password input */}
           <div className="mb-4 relative">
             <input
               type={showPassword ? "text" : "password"}
@@ -86,65 +96,37 @@ const Page = () => {
               className="w-full px-4 text-black py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#5F41E4]"
               required
             />
-
             <button
-              className="absolute inset-y-0 end-0 flex items-center z-20 px-2.5 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus-visible:text-indigo-500 hover:text-indigo-500 transition-colors"
+              className="absolute inset-y-0 right-3 flex items-center px-2.5 cursor-pointer text-gray-400 rounded-e-md"
               type="button"
               onClick={toggleVisibility}
-              aria-label={showPassword ? "Hide password" : "Show password"}
-              aria-pressed={showPassword}
-              aria-controls="password"
             >
-              {showPassword ? (
-                <MdVisibilityOff size={20} aria-hidden="true" />
-              ) : (
-                <MdVisibility size={20} aria-hidden="true" />
-              )}
+              {showPassword ? <MdVisibilityOff size={20} /> : <MdVisibility size={20} />}
             </button>
             {error.password && (
-              <span className="text-xs text-red-500 italic">
-                {error.password}
-              </span>
+              <span className="text-xs text-red-500 italic">{error.password}</span>
             )}
           </div>
 
-          <div className="mb-4 text-right text-sm hover:underline">
-            <a href="#" className="text-[#5F41E4] hover:underline">
-              Forget Password?
-            </a>
-          </div>
+          {/* General error */}
+          {error.general && (
+            <div className="text-xs text-red-500 italic mb-3">{error.general}</div>
+          )}
 
+          {/* Submit button */}
           <button
             type="submit"
             className="w-full bg-[#5F41E4] text-[#D5CBFF] font-bold py-2 px-4 rounded-md hover:bg-[#5038b9]"
           >
             Log In
           </button>
-          {/* <div className="text-center mb-4">or</div> */}
-
-          {/* Login with Google */}
-          {/* <div className="flex justify-between gap-4 mb-4">
-            <button className="flex items-center justify-center w-80 px-4 py-2 border rounded-md bg-[#D5CBFF] hover:bg-[#D5CBFF]">
-              <Image
-                src="/assets/google.svg"
-                alt="Google"
-                className="h-5 mr-2"
-                width={20}
-                height={20}
-              />
-              Continue with Google
-            </button>
-          </div> */}
         </form>
 
-        {/* Signup & Back to Home */}
+        {/* Links */}
         <div className="text-center text-sm mt-4">
           <p>
             Don’t have an account?{" "}
-            <a
-              href="/signup"
-              className="text-[#5F41E4] font-bold hover:underline"
-            >
+            <a href="/signup" className="text-[#5F41E4] font-bold hover:underline">
               Signup now
             </a>
           </p>
