@@ -94,9 +94,12 @@ const Page = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-green-600">
                     Rs. {product.price}
                   </td>
-                  {/* Price */}
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-green-950">
-                    {product.soldOut || "Unknown"}
+                  {/* status */}
+                  {/* status */}
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-bold">
+                    <span className={product.soldOut ? "text-red-500" : "text-green-950"}>
+                      {product.isSoldOut ? "Sold Out" : "Unknown"}
+                    </span>
                   </td>
 
                   {/* Actions */}

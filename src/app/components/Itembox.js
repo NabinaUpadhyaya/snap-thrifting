@@ -83,19 +83,14 @@ const Itembox = () => {
                     <p className="text-gray-600"><strong>Status:</strong> <span className="font-semibold text-blue-600">{pkg.status}</span></p>
                   </div>
                   
-<<<<<<< HEAD
-                  {/* DELETE button below the status */}
                   {/* <div className="flex justify-end mt-4">
-=======
-                  <div className="flex justify-end mt-4">
->>>>>>> f2143e9dbb782aadce9d953e7d6784549cbe42ad
                     <button
                       onClick={() => handleDelete(pkg._id)} 
                       className="bg-red-600 text-white font-bold text-sm py-1 px-3 rounded-lg shadow-md hover:bg-red-700 transition-all duration-300"
                     >
                       DELETE
                     </button>
-                  </div> */}
+                  </div>  */}
                 </div>
               ))}
             </div>

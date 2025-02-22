@@ -155,12 +155,21 @@ const ProductPage = () => {
         </div>
 
         <div className="flex gap-6 justify-center mb-6">
-          <button
-            onClick={() => addToCart(product._id)}
-            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg font-medium transition-transform transform hover:scale-105"
-          >
-            Add to Cart
-          </button>
+        <button
+          onClick={() => {
+            if (!product.isSoldOut) {
+              addToCart(product._id);
+            }
+          }}
+          disabled={product.isSoldOut}
+          className={`py-2 px-6 rounded-lg font-medium transition-transform transform hover:scale-105 ${
+            product.isSoldOut
+              ? "bg-gray-400 cursor-not-allowed text-gray-700"
+              : "bg-blue-500 hover:bg-blue-600 text-white"
+          }`}
+        >
+          {product.isSoldOut ? "Sold Out" : "Add to Cart"}
+        </button>
           <Link
             href="/homepage"
             className="bg-gray-500 hover:bg-gray-600 text-white py-3 px-8 rounded-lg font-medium transition-transform transform hover:scale-105"
