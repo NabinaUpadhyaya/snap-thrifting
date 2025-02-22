@@ -114,7 +114,7 @@ const Page = () => {
                   {/* status */}
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-bold">
                     <span className={product.soldOut ? "text-red-500" : "text-green-950"}>
-                      {product.isSoldOut ? "Sold Out" : "Unknown"}
+                      {product.isSoldOut ? "Sold Out" : "Available"}
                     </span>
                   </td>
 

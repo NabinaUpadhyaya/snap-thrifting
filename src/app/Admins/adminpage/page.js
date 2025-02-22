@@ -19,45 +19,6 @@ import useAuth from "../../components/useAuth";
 const Page = () => {
   const { user, loading: loadingUser } = useAuth(); // Use the hook to get user data
 
-//   const [stats, setStats] = useState({
-//     customers: 0,
-//     packages: 0,
-//     orders: 0,
-
-// });
-// useEffect(() => {
-//   const fetchStats = async () => {
-//     try {
-//       const response = await fetch("http://localhost:5000/products/createProduct"); // Replace with your API URL
-//       const data = await response.json();
-//       setStats({
-//         customers: data.customers,
-//         packages: data.packages,
-//         orders: data.orders,
-//       });
-//     } catch (error) {
-//       // console.error("Error fetching stats:", error);
-//     }
-//   };
-//   });
-
-  // useEffect(() => {
-  //   const fetchStats = async () => {
-  //     try {
-  //       const response = await fetch("https://your-backend-api.com/api/stats"); // Replace with your API URL
-  //       const data = await response.json();
-  //       setStats({
-  //         customers: data.customers,
-  //         packages: data.packages,
-  //         orders: data.orders,
-  //       });
-  //     } catch (error) {
-  //       console.log("Error fetch]]ing stats:", error);
-  //     }
-  //   };
-
-  //   fetchStats();
-  // }, []);
 
   const [formData, setFormData] = useState({
     productName: "",
