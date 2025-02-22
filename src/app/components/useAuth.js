@@ -26,11 +26,8 @@ const useAuth = () => {
           withCredentials: true,
         });
 
-<<<<<<< HEAD
-=======
         console.log("User data received:", res.data.data); 
 
->>>>>>> f2143e9dbb782aadce9d953e7d6784549cbe42ad
         if (res.data.success) {
           setUser({
             ...res.data.data,
