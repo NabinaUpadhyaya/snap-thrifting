@@ -45,28 +45,32 @@ const page = () => {
       <div className=""></div>
 
       <div
-        id="home"
-        className="relative    h-[605px] flex items-center bg-cover bg-center bg-no-repeat  overflow-hidden"
-        style={{ backgroundImage: "url('/image/staticimg/bgg1.jpg')" }}
-      >
-        <section className="container mx-auto px-6 text-center">
-          <div className='' >
 
-          <h2 className="text-5xl text-shadow-xl font-extrabold mb-4 animate-fade-in ">
-          Style Sustainably, Shop Affordably          </h2>
-          <p className="text-lg text-shadow-xl mb-6 animate-slide-up">
-            Find pre-loved treasures online
-            with fast delivery,Affordable price and trusted service.
-          </p>
-          </div>
-          <Link
-            href="/login"
-            className="bg-[#5F41E4] hover:bg-[#533cbb] text-gray-800 px-6 py-3 rounded font-bold transition duration-300 animate-bounce"
-          >
-            Shop Now
-          </Link>
-        </section>
-      </div>
+id="home"
+className="relative h-[605px] flex items-center bg-cover bg-center bg-no-repeat overflow-hidden"
+style={{
+  backgroundImage: "linear-gradient(to bottom, rgba(107, 73, 240, 0.7), rgba(33, 150, 243, 0.7)), url('/image/staticimg/back.jpg')",
+}}
+>
+<section className="container mx-auto px-6 text-center">
+  <div className="">
+    <h2 className="text-5xl text-shadow-xl font-extrabold mb-4 animate-fade-in">
+      Style Sustainably, Shop Affordably
+    </h2>
+    <p className="text-lg text-shadow-xl mb-6 animate-slide-up">
+      Find pre-loved treasures online with fast delivery, affordable price, and trusted service.
+    </p>
+  </div>
+  <Link
+    href="/login"
+    className="bg-[#5F41E4] hover:bg-[#533cbb] text-gray-800 px-6 py-3 rounded font-bold transition duration-300 animate-bounce"
+  >
+    Shop Now
+  </Link>
+</section>
+</div>
+
+
    
 <section id="about" className="py-16 bg-gradient-to-r from-[#EAE7F0] via-[#F7F4FA] to-[#EAE7F0]">
   <div className="max-w-screen-xl mx-auto px-6">
