@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import {
   FaUsers,
- 
   FaTshirt,
   FaTag,
   FaInfoCircle,
@@ -17,7 +16,7 @@ import useAuth from "../../components/useAuth";
 
 
 const Page = () => {
-  const { user, loading: loadingUser } = useAuth(); // Use the hook to get user data
+  const { user, loading: loadingUser } = useAuth(); 
 
   const [formData, setFormData] = useState({
     productName: "",
@@ -40,7 +39,7 @@ const [showConfirm, setShowConfirm] = useState(false);
   };  
 
   const handleCancel = () => {
-    setShowConfirm(false); // Close the confirmation popup
+    setShowConfirm(false); 
   };
 
   const handleInputChange = (e) => {
@@ -81,7 +80,6 @@ const [showConfirm, setShowConfirm] = useState(false);
     form.append("tear", formData.productTear);
     form.append("category", formData.productCategory.toLowerCase()); // Ensure category is a valid category
   
-    // Append multiple images
     if (formData.productImage1) {
       form.append("images", formData.productImage1);
     }
@@ -94,8 +92,8 @@ const [showConfirm, setShowConfirm] = useState(false);
         "https://snap-thrift-backend.onrender.com/products/createProduct",
         {
           method: "POST",
-          credentials: "include", // Include cookies for authentication
-          body: form, // No need to add headers, browser sets it for FormData
+          credentials: "include", 
+          body: form,
         }
       );
   
@@ -157,7 +155,7 @@ const [showConfirm, setShowConfirm] = useState(false);
       {/* Log Out Link */}
       <button
         className="mb-4 hover:text-[#3b2796] flex items-center"
-        onClick={() => setShowConfirm(true)} // Show confirmation popup
+        onClick={() => setShowConfirm(true)} 
       >
         <IoMdLogOut className="mr-2" /> Log Out
       </button>
@@ -178,6 +176,7 @@ const [showConfirm, setShowConfirm] = useState(false);
                 Yes
               </Link>
                {/* No button */}
+             
                <button
               
                 className="bg-[#5F41E4] text-white px-4 py-2 m-2 w-full  rounded-lg hover:bg-[#3b2796]"

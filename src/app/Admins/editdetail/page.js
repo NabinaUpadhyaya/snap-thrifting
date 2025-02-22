@@ -2,62 +2,61 @@
 import React, { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import useAuth from "../../components/useAuth";
+import cookie from "js-cookie";
+import axios from "axios";
+
+const accessToken = cookie.get("accessToken");
 
 const EditProductPage = () => {
-  const { user, loading: loadingUser } = useAuth(); // Get user data if needed
+  const { user, loading: loadingUser } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
   const productId = searchParams.get("id");
   const [formData, setFormData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!productId) {
       console.error("Product ID is missing");
+      setError("Product ID is missing");
       setLoading(false);
       return;
     }
 
     const fetchProduct = async () => {
       try {
-        const response = await fetch(
+        const response = await axios.get(
           `https://snap-thrift-backend.onrender.com/products/getProductById/${productId}`,
           {
-            credentials: "include",
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+            withCredentials: true,
           }
         );
 
-        if (!response.ok) throw new Error("Failed to load product data");
+        const productData = response.data.data || response.data;
 
-        const data = await response.json();
-        // Assuming your API returns the product object directly or wrapped in data.data
-        const productData = data.data ? data.data : data;
-
-        // Map API response fields to your form's state structure.
         const mappedData = {
-          productName: productData.name,
-          productPrice: productData.price,
-          productDescription: productData.description,
-          productSize: productData.size,
-          productCategory: productData.category,
-          productDiscolor: productData.discolor ? "yes" : "no",
-          productCondition: productData.condition,
-          productTear: productData.tear ? "yes" : "no",
-          productImage1:
-            productData.images && productData.images[0]
-              ? productData.images[0].url
-              : "",
-          productImage2:
-            productData.images && productData.images[1]
-              ? productData.images[1].url
-              : "",
+          name: productData.name || "",
+          price: productData.price || "",
+          description: productData.description || "",
+          size: productData.size || "S",
+          category: productData.category || "clothing",
+          discolor: productData.discolor ? "yes" : "no",
+          condition: productData.condition || "new",
+          tear: productData.tear ? "yes" : "no",
+          image1: productData.images && productData.images[0] ? productData.images[0].url : "",
+          image2: productData.images && productData.images[1] ? productData.images[1].url : "",
         };
 
-        console.log("Mapped Product Data:", mappedData);
+        console.log("Fetched Product Data:", mappedData);
         setFormData(mappedData);
         setLoading(false);
       } catch (error) {
-        console.error(error.message);
+        console.error("Fetch error:", error);
+        setError(error.response?.data?.message || "Failed to load product");
         setLoading(false);
       }
     };
@@ -83,46 +82,71 @@ const EditProductPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const form = new FormData();
-    form.append("name", formData.productName);
-    form.append("price", formData.productPrice);
-    form.append("description", formData.productDescription);
-    form.append("size", formData.productSize.toUpperCase());
-    form.append("discolor", formData.productDiscolor === "yes");
-    form.append("condition", formData.productCondition.toLowerCase());
-    form.append("tear", formData.productTear === "yes");
-    form.append("category", formData.productCategory.toLowerCase());
+    setError(null);
 
-    if (formData.productImage1 && typeof formData.productImage1 !== "string") {
-      form.append("images", formData.productImage1);
-    }
-    if (formData.productImage2 && typeof formData.productImage2 !== "string") {
-      form.append("images", formData.productImage2);
-    }
+    
+    const updateData = {
+      name: formData.name,
+      price: parseFloat(formData.price), 
+      description: formData.description,
+      size: formData.size.toUpperCase(),
+      discolor: formData.discolor === "yes",
+      condition: formData.condition.toLowerCase(),
+      tear: formData.tear === "yes",
+      category: formData.category.toLowerCase(),
+    };
+
+    console.log("Sending Update Data:", updateData);
 
     try {
-      const response = await fetch(
+      const response = await axios.put(
         `https://snap-thrift-backend.onrender.com/products/updateProduct/${productId}`,
+        updateData,
         {
-          method: "PUT",
-          credentials: "include",
-          body: form,
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
         }
       );
-      const data = await response.json();
 
-      if (response.ok) {
+      console.log("Backend Response:", response.data);
+
+      const updatedProduct = response.data.data;
+      const isUpdated = Object.keys(updateData).some(
+        (key) => updatedProduct[key] !== undefined && updatedProduct[key].toString() === updateData[key].toString()
+      );
+
+      if (response.data.success && isUpdated) {
         alert("Product updated successfully!");
-        router.push("/Admins/manageproducts"); // Redirect to manage products page
+        router.push("/Admins/manageproducts");
       } else {
-        alert(`Error: ${data.message}`);
+        throw new Error("Update failed or no changes applied");
       }
     } catch (error) {
-      alert("There was an error updating the product. Please try again.");
+      const errorMsg = error.response?.data?.message || error.message || "Product failed to update";
+      console.error("Update error:", errorMsg, error);
+      setError(errorMsg);
+      alert("Product failed to update");
     }
   };
 
-  if (loading || !formData) return <p>Loading product data...</p>;
+  if (loading || !formData) {
+    return (
+      <div className="min-h-screen flex justify-center items-center bg-gray-100">
+        <p>Loading product data...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex justify-center items-center bg-gray-100">
+        <p className="text-red-500">{error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
@@ -130,46 +154,46 @@ const EditProductPage = () => {
         <h2 className="font-bold text-2xl mb-6 text-center">Edit Product</h2>
         <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
           <div className="flex flex-col">
-            <label htmlFor="productName">Product Name</label>
+            <label htmlFor="name">Product Name</label>
             <input
               type="text"
-              id="productName"
-              name="productName"
-              value={formData.productName || ""}
+              id="name"
+              name="name"
+              value={formData.name}
               onChange={handleInputChange}
               className="border p-2 rounded-md"
             />
           </div>
 
           <div className="flex flex-col">
-            <label htmlFor="productPrice">Product Price</label>
+            <label htmlFor="price">Product Price</label>
             <input
               type="text"
-              id="productPrice"
-              name="productPrice"
-              value={formData.productPrice || ""}
+              id="price"
+              name="price"
+              value={formData.price}
               onChange={handleInputChange}
               className="border p-2 rounded-md"
             />
           </div>
 
           <div className="col-span-2 flex flex-col">
-            <label htmlFor="productDescription">Product Description</label>
+            <label htmlFor="description">Product Description</label>
             <textarea
-              id="productDescription"
-              name="productDescription"
-              value={formData.productDescription || ""}
+              id="description"
+              name="description"
+              value={formData.description}
               onChange={handleInputChange}
               className="border p-2 rounded-md"
             />
           </div>
 
           <div className="flex flex-col">
-            <label htmlFor="productSize">Size</label>
+            <label htmlFor="size">Size</label>
             <select
-              id="productSize"
-              name="productSize"
-              value={formData.productSize || "S"}
+              id="size"
+              name="size"
+              value={formData.size}
               onChange={handleInputChange}
               className="border p-2 rounded-md"
             >
@@ -180,11 +204,11 @@ const EditProductPage = () => {
           </div>
 
           <div className="flex flex-col">
-            <label htmlFor="productCategory">Category</label>
+            <label htmlFor="category">Category</label>
             <select
-              id="productCategory"
-              name="productCategory"
-              value={formData.productCategory || "clothing"}
+              id="category"
+              name="category"
+              value={formData.category}
               onChange={handleInputChange}
               className="border p-2 rounded-md"
             >
@@ -194,39 +218,80 @@ const EditProductPage = () => {
             </select>
           </div>
 
+          <div className="flex flex-col">
+            <label htmlFor="condition">Condition</label>
+            <select
+              id="condition"
+              name="condition"
+              value={formData.condition}
+              onChange={handleInputChange}
+              className="border p-2 rounded-md"
+            >
+              <option value="new">New</option>
+              <option value="used">Used</option>
+              <option value="refurbished">Refurbished</option>
+            </select>
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="discolor">Discoloration</label>
+            <select
+              id="discolor"
+              name="discolor"
+              value={formData.discolor}
+              onChange={handleInputChange}
+              className="border p-2 rounded-md"
+            >
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="tear">Tear</label>
+            <select
+              id="tear"
+              name="tear"
+              value={formData.tear}
+              onChange={handleInputChange}
+              className="border p-2 rounded-md"
+            >
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+
           <div className="col-span-2 grid grid-cols-2 gap-6">
             <div className="flex flex-col">
-              <label htmlFor="productImage1">Product Image 1</label>
-              {formData.productImage1 &&
-                typeof formData.productImage1 === "string" && (
-                  <img
-                    src={formData.productImage1}
-                    alt="Product 1"
-                    className="w-20 h-20 object-cover"
-                  />
-                )}
+              <label htmlFor="image1">Product Image 1</label>
+              {formData.image1 && typeof formData.image1 === "string" && (
+                <img
+                  src={formData.image1}
+                  alt="Product 1"
+                  className="w-20 h-20 object-cover"
+                />
+              )}
               <input
                 type="file"
-                id="productImage1"
-                name="productImage1"
+                id="image1"
+                name="image1"
                 onChange={handleFileChange}
               />
             </div>
 
             <div className="flex flex-col">
-              <label htmlFor="productImage2">Product Image 2</label>
-              {formData.productImage2 &&
-                typeof formData.productImage2 === "string" && (
-                  <img
-                    src={formData.productImage2}
-                    alt="Product 2"
-                    className="w-20 h-20 object-cover"
-                  />
-                )}
+              <label htmlFor="image2">Product Image 2</label>
+              {formData.image2 && typeof formData.image2 === "string" && (
+                <img
+                  src={formData.image2}
+                  alt="Product 2"
+                  className="w-20 h-20 object-cover"
+                />
+              )}
               <input
                 type="file"
-                id="productImage2"
-                name="productImage2"
+                id="image2"
+                name="image2"
                 onChange={handleFileChange}
               />
             </div>
