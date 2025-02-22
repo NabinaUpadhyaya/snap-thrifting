@@ -12,7 +12,7 @@ const CartPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { user } = useAuth();
-
+  const [products, setProducts] = useState([]);
   // Fetch cart data
   useEffect(() => {
     const fetchCart = async () => {
@@ -34,7 +34,8 @@ const CartPage = () => {
           setCartData(response.data.data);
         }
       } catch (err) {
-        setError("Failed to load cart items");
+        
+        // setError("Failed to load cart items");
         // console.error("Error fetching cart:", err);
       } finally {
         setLoading(false);
@@ -46,36 +47,52 @@ const CartPage = () => {
 
  
 
-  const handleRemove = async (productId) => {
+  const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(
-        `https://snap-thrift-backend.onrender.com/cart/deleteCart/${productId}`,
-        { headers: { "Content-Type": "application/json" } }
+      const res = await axios.put(
+        `https://snap-thrift-backend.onrender.com/cart/updateCart/`,
+        { productId: id },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`, // Use accessToken instead of undefined token
+          },
+          withCredentials: true,
+        }
       );
 
-      if (response.data.success) {
-        setCartData(response.data.data);
+      // Update cartData state after successful deletion
+      setCartData((prevCartData) => ({
+        ...prevCartData,
+        products: prevCartData.products.filter((item) => item.productId !== id),
+        totalAmount: res.data.data.totalAmount, // Update totalAmount from backend response
+      }));
+
+      console.log("Product removed successfully:", res.data);
+    } catch (error) {
+      if (error.response) {
+        console.log("Server responded with:", error.response.data);
+      } else if (error.request) {
+        console.log("No response received:", error.request);
+      } else {
+        console.log("Error setting up request:", error.message);
       }
-    } catch (err) {
-      console.error("Error removing item:", err);
     }
   };
+  // if (loading) {
+  //   return (
+  //     <div className="min-h-screen flex items-center justify-center">
+  //       <p className="text-xl text-gray-600">Loading your cart...</p>
+  //     </div>
+  //   );
+  // }
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-xl text-gray-600">Loading your cart...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-xl text-red-500">{error}</p>
-      </div>
-    );
-  }
+  // if (error) {
+  //   return (
+  //     <div className="min-h-screen flex items-center justify-center">
+  //       <p className="text-xl text-red-500">{error}</p>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -122,8 +139,8 @@ const CartPage = () => {
 
                   <div className="flex items-center gap-6 mt-4 md:mt-0">
                    
-                    <button
-                      onClick={() => handleRemove(item.productId)}
+                  <button
+                      onClick={() => handleDelete(item.productId)} // Use item.productId instead of product._id
                       className="text-red-500 hover:text-red-600 font-medium"
                     >
                       Remove

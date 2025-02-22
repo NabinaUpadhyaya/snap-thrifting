@@ -123,7 +123,6 @@ const Page = () => {
                 <th className="px-6 py-3 text-left text-xs font-medium uppercase">Status</th>
                 <th className="px-6 py-3 text-left text-xs font-medium uppercase">Actions</th>
                 <th className="px-6 py-3 text-left text-xs font-medium uppercase">Details</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Manage</th>
               </tr>
             </thead>
             <tbody className="bg-white">
@@ -192,10 +191,7 @@ const Page = () => {
                     {selectedOrder === order && <ViewDetails order={order} />}
                   </td>
                   
-                  {/* Delete Column */}
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-red-500 hover:text-red-600">
-                    <button>Delete</button>
-                  </td>
+                 
                 </tr>
               ))}
             </tbody>
