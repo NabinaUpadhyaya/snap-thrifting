@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
+import Cookies from "js-cookie";
 
 const Page = () => {
   const [products, setProducts] = useState([]);
@@ -25,15 +26,30 @@ const Page = () => {
     fetchProducts();
   }, []);
 
+  const token = Cookies.get("accessToken");
+
+  if (!token) {
+    setLoading(false);
+    setAuthLoading(false); // Ensure auth loading is false if no token
+    return;
+  }
+
   const handleDelete = async (id) => {
     try {
+      console.log(id);
       const res = await axios.delete(
-        `https://snap-thrift-backend.onrender.com/products/deleteProduct/${id}`
+        `https://snap-thrift-backend.onrender.com/products/deleteProduct/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        }
       );
 
       setProducts(products.filter((product) => product._id !== id));
     } catch (error) {
-      console.error("Error deleting product:", error);
+      console.log("Error deleting product:", error);
     }
   };
   return (
@@ -97,12 +113,8 @@ const Page = () => {
                   {/* status */}
                   {/* status */}
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-bold">
-                    <span
-                      className={
-                        product.soldOut ? "text-red-500" : "text-green-950"
-                      }
-                    >
-                      {product.isSoldOut ? "Sold Out" : "Unknown"}
+                    <span className={product.soldOut ? "text-red-500" : "text-green-950"}>
+                      {product.isSoldOut ? "Sold Out" : "Available"}
                     </span>
                   </td>
 

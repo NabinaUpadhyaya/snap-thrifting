@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import cookie from "js-cookie";
+
 
 const ViewDetails = ({ order }) => {
   return (
@@ -53,17 +55,17 @@ const Page = () => {
     };
     fetchOrders();
   }, []);
-
+const accessToken = cookie.get("accessToken");
   const handleStatusUpdate = async (orderId) => {
     try {
       const response = await axios.put(
-        `https://snap-thrift-backend.onrender.com/order/${orderId}`,
+        `https://snap-thrift-backend.onrender.com/order/updateOrder/${orderId}`,
         { status },
         {
           headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'  // Add this to ensure JSON response
-          }
+            Authorization: `Bearer ${accessToken}`, // Use accessToken instead of undefined token
+          },
+          withCredentials: true,
         }
       );
       
@@ -123,7 +125,6 @@ const Page = () => {
                 <th className="px-6 py-3 text-left text-xs font-medium uppercase">Status</th>
                 <th className="px-6 py-3 text-left text-xs font-medium uppercase">Actions</th>
                 <th className="px-6 py-3 text-left text-xs font-medium uppercase">Details</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Manage</th>
               </tr>
             </thead>
             <tbody className="bg-white">
@@ -192,10 +193,7 @@ const Page = () => {
                     {selectedOrder === order && <ViewDetails order={order} />}
                   </td>
                   
-                  {/* Delete Column */}
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-red-500 hover:text-red-600">
-                    <button>Delete</button>
-                  </td>
+                 
                 </tr>
               ))}
             </tbody>
