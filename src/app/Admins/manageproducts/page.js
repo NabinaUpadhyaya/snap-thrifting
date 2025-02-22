@@ -97,14 +97,18 @@ const Page = () => {
                   {/* status */}
                   {/* status */}
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-bold">
-                    <span className={product.soldOut ? "text-red-500" : "text-green-950"}>
+                    <span
+                      className={
+                        product.soldOut ? "text-red-500" : "text-green-950"
+                      }
+                    >
                       {product.isSoldOut ? "Sold Out" : "Unknown"}
                     </span>
                   </td>
 
                   {/* Actions */}
                   <td className="px-6 py-4 whitespace-nowrap text-sm flex space-x-4">
-                    <Link href="/Admins/editdetail">
+                    <Link href={`/Admins/editdetail?id=${product._id}`}>
                       <button className="bg-[#5F41E4] text-white mt-4 px-4 py-2 rounded-lg hover:bg-[#5F41E4] transition">
                         Edit
                       </button>
