@@ -6,17 +6,15 @@ import Footer from "../components/Footer";
 import VerifiedSection from "../components/VerifiedSection";
 import { FaSearch } from "react-icons/fa";
 import useAuth from "../components/useAuth";
-import Cookies from "js-cookie"; // Import useAuth hook
 import Link from "next/link";
 
 const Homepage = () => {
   const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
-  const { user, loading: loadingUser } = useAuth(); // Use the hook to get user data
+  const { user, loading: loadingUser } = useAuth(); 
   const [loadingProducts, setLoadingProducts] = useState(true);
 
-  // Fetch products from backend
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -30,7 +28,7 @@ const Homepage = () => {
           console.error("Error fetching products:", data.message);
         }
       } catch (err) {
-        console.error("Error fetching products:", err);
+        // console.error("Error fetching products:", err);
       } finally {
         setLoadingProducts(false);
       }
@@ -39,7 +37,6 @@ const Homepage = () => {
     fetchProducts();
   }, []);
 
-  // Filter products based on category & search query
   const filteredItems = products.filter((item) => {
     const itemCategory = item.category?.toLowerCase() || "";
     const itemName = item.name?.toLowerCase() || "";
@@ -59,7 +56,6 @@ const Homepage = () => {
     <div>
       <Header />
 
-      {/* Welcome Message */} 
       {loadingUser ? (
         <div className="text-center py-4 text-lg text-gray-500">Loading user data...</div>
       ) : user ? (
@@ -74,10 +70,9 @@ const Homepage = () => {
         </div>
       )}
 
-      {/* Search & Filter Section */}
       <div className="bg-gray-100 py-8">
         <div className="flex flex-wrap gap-4 mb-8 px-4 justify-center items-center">
-          {/* Category Dropdown */}
+          
           <select
             className="px-4 py-2 w-80 bg-[#5F41E4] text-white rounded-lg outline-none hover:bg-[#5238c2] focus:ring-2 focus:ring-[#5F41E4] transition-all"
             value={selectedCategory}
@@ -89,7 +84,7 @@ const Homepage = () => {
             <option value="Accessories">Accessories</option>
           </select>
 
-          {/* Search Input */}
+        
           <div className="relative w-72">
             <input
               type="text"
@@ -101,15 +96,17 @@ const Homepage = () => {
             <FaSearch size={20} className="absolute top-3 right-3 text-gray-400" />
           </div>
 
-          {/* Search Button */}
+       
           <button className="flex items-center justify-center py-2 px-4 bg-[#5F41E4] text-white rounded-lg hover:bg-[#5239c1] transition-all ease-in-out">
             Search
           </button>
         </div>
 
-        {/* Product Grid */}
+      
         {loadingProducts ? (
-          <p className="text-center text-gray-500">Loading products...</p>
+             <div className="min-h-screen flex items-center justify-center">
+             <p className="text-xl text-gray-600">Loading products...</p>
+           </div>
         ) : filteredItems.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 px-4">
             {filteredItems.map((item) => (

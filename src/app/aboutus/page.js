@@ -11,17 +11,13 @@ const page = () => {
   return (
     <div>
       <div>
-{/* Navbar */}
 <header className="flex items-center justify-between p-4 shadow-md bg-[#5F41E4]">
-      {/* Logo */}
       <div className="text-2xl font-serif font-bold">
         <span className="italic text-white">Snap-Thrift</span>
       </div>
 
-      {/* Buttons */}
       <ul className="flex items-center space-x-6">
         
-        {/* About Us Button */}
         <Link 
           href="/aboutus"
           className="px-4 py-2 text-[#5F41E4] bg-white rounded-md hover:bg-gray-300 flex items-center">
@@ -29,7 +25,6 @@ const page = () => {
           About Us
         </Link>
 
-        {/* Login Button */}
         <Link 
           href="/login"
           className="px-4 py-2 text-[#5F41E4] bg-white rounded-md hover:bg-gray-300 flex items-center">
@@ -42,7 +37,6 @@ const page = () => {
       </div>
       <div className='bg-[#ededed]'>
       <div className="max-w-7xl mx-auto p-7 pt-[111px] grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        {/* Left Section: Text */}
         <div className="space-y-6">
           <h2 className="text-4xl font-medium text-gray-600">About Us</h2>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
@@ -60,9 +54,7 @@ const page = () => {
             </button>
           </Link>
         </div>
-        {/* Right Section: Images Layout */}
         <div className="relative w-full h-[30rem] flex justify-center items-end">
-          {/* Image 1: Bottom Center */}
           <div className="relative w-4/5 h-64 md:h-72 z-0 shadow-lg">
             <img
               src="/image/about_img/clothes-rack.jpeg"
@@ -71,7 +63,6 @@ const page = () => {
             />
           </div>
 
-          {/* Image 2: Top Left (Above and Overlapping) */}
           <div className="absolute -top-0 -left-14 w-1/2 h-48 md:h-56 transform -rotate-6 shadow-lg z-10">
             <img
               src="/image/about_img/clothes-grid.png"
@@ -80,7 +71,6 @@ const page = () => {
             />
           </div>
 
-          {/* Image 3: Top Right (Above and Overlapping) */}
           <div className="absolute -top-0 -right-14 w-1/2 h-48 md:h-56 transform rotate-3 shadow-lg z-10">
             <img
               src="/image/about_img/phone-shopping.png"
@@ -104,7 +94,6 @@ const page = () => {
               className="object-cover"
            />
           </div>
-          {/* Text Section */}
           <div className="w-full md:w-1/2 p-6 md:p-8">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">SNAP Story</h2>
             <p className="text-gray-700 text-lg leading-relaxed ">
@@ -115,7 +104,6 @@ const page = () => {
             </p>
           </div>
         </div>
-        {/* -- Mission Section -- */}
         <div className="max-w-5xl mx-auto mt-12 text-center px-4">
           <h3 className="text-3xl font-semibold text-gray-500 mb-2">OUR MISSION</h3>
           <h1 className="text-2xl md:text-4xl font-extrabold mb-6">
@@ -127,12 +115,9 @@ const page = () => {
           </p>
         </div>
       </div>
-      {/* Community and Sustainability Section */}
       <div className="max-w-4xl mx-auto space-y-12">
         <div className="space-y-12">
-          {/* Community Section */}
           <div className="flex flex-col md:flex-row items-center justify-center space-y-20 md:space-y-0">
-            {/* Image Section */}
             <div className="w-full md:w-1/3">
               <Image
               src="/image/about_img/community.jpg" 
@@ -143,7 +128,6 @@ const page = () => {
               className="rounded-lg shadow-md"
               />
             </div>
-            {/* Text Section */}
             <div className="w-full md:w-1/2 p-6 md:p-8">
               <h2 className="text-2xl md:text-3xl font-bold mb-2">Our Community</h2>
               <p className="text-gray-700 text-lg leading-relaxed">
@@ -153,9 +137,7 @@ const page = () => {
               </p>
             </div>
           </div>
-          {/* Sustainability Section */}
           <div className="flex flex-col md:flex-row items-center space-y-8 md:space-y-0">
-            {/* Image Section */}
             <div className="w-full md:w-1/2 order-2 md:order-1">
               <Image
                 src="/image/about_img/sustainable.png" 
@@ -166,7 +148,6 @@ const page = () => {
                 className="rounded-full shadow-md w-full h-full object-cover" 
               />
             </div>
-            {/* Text Section */}
             <div className="w-full md:w-1/2 p-6 md:p-8 order-1 md:order-2">
               <h2 className="text-2xl md:text-3xl font-bold mb-2">Sustainability at Heart</h2>
               <p className="text-gray-700 text-lg leading-relaxed">
@@ -180,9 +161,7 @@ const page = () => {
       </div>
       <div className="flex justify-center px-4 py-8 bg-white">
         <div className="flex flex-col items-center justify-center ml-64">
-          {/* Join Us Section */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center max-w-6xl mx-auto">
-            {/* Text Content */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <h2 className="text-2xl md:text-3xl font-bold mb-4">Join Us!</h2>
               <p className="text-gray-700 text-lg leading-relaxed mb-6">
@@ -200,7 +179,6 @@ const page = () => {
               </Link>
                 </ul>
             </div>
-            {/* Image Content */}
             <div className="w-1/2">
               <Image
                 src="/image/about_img/th.jpg"

@@ -11,7 +11,6 @@ const useAuth = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        // Retrieve the token from cookies
         const token = Cookies.get("accessToken");
 
         if (!token) {
@@ -20,7 +19,6 @@ const useAuth = () => {
           return;
         }
 
-        // Fetch user details from backend
         const res = await axios.get("https://snap-thrift-backend.onrender.com/user/me", {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -28,10 +26,15 @@ const useAuth = () => {
           withCredentials: true,
         });
 
+<<<<<<< HEAD
+=======
+        console.log("User data received:", res.data.data); 
+
+>>>>>>> f2143e9dbb782aadce9d953e7d6784549cbe42ad
         if (res.data.success) {
           setUser({
             ...res.data.data,
-            role: res.data.data.role || "user", // Default role to "user" if not provided
+            role: res.data.data.role || "user", 
           });
         } else {
           console.log("Failed to fetch user:", res.data.message);

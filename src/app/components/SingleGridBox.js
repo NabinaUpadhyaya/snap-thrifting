@@ -1,4 +1,3 @@
-// src/components/SingleGridBox.jsx
 import React from 'react';
 
 const SingleGridBox = ({ image, name, category, price, detailsLink }) => {

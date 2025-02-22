@@ -1,4 +1,4 @@
-// src/app/product/[id].js
+"use client"
 import { useRouter } from 'next/router';
 import { items as clothingItems } from '../../data/clothingitems';
 import { items as shoeItems } from '../../data/shoeitems';
@@ -6,9 +6,8 @@ import { items as accessoryItems } from '../../data/accessoriesitems';
 
 const ProductDetail = () => {
   const router = useRouter();
-  const { id } = router.query; // Extract product ID from URL
+  const { id } = router.query; 
 
-  // Find the product based on the ID
   const product = [
     ...clothingItems,
     ...shoeItems,
@@ -16,7 +15,7 @@ const ProductDetail = () => {
   ].find((item) => item.id === parseInt(id));
 
   if (!product) {
-    return <div>Product not found</div>; // Handle case if product doesn't exist
+    return <div>Product not found</div>; 
   }
 
   return (

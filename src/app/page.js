@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link';
 import { FaInfoCircle } from 'react-icons/fa';
-import { AiOutlineInfoCircle, AiOutlineLogin } from 'react-icons/ai'; 
+import {  AiOutlineLogin } from 'react-icons/ai'; 
 import Footer from './components/Footer';
 
 const page = () => {
@@ -18,17 +18,13 @@ const page = () => {
   ];
   return (
     <div className="bg-gray-50 min-h-screen">
-     {/* Navbar */}
      <header className="flex items-center justify-between p-4 shadow-md bg-[#5F41E4]">
-      {/* Logo */}
       <div className="text-2xl font-serif font-bold">
         <span className="italic text-white">Snap-Thrift</span>
       </div>
 
-      {/* Buttons */}
       <ul className="flex items-center space-x-6">
         
-        {/* About Us Button */}
         <Link 
           href="/aboutus"
           className="px-4 py-2 text-[#5F41E4] bg-white rounded-md hover:bg-gray-300 flex items-center">
@@ -36,7 +32,6 @@ const page = () => {
           About Us
         </Link>
 
-        {/* Login Button */}
         <Link 
           href="/login"
           className="px-4 py-2 text-[#5F41E4] bg-white rounded-md hover:bg-gray-300 flex items-center">
@@ -47,10 +42,8 @@ const page = () => {
       </ul>
     </header>
 
-      {/* Add margin to prevent overlap */}
       <div className=""></div>
 
-      {/* Photo Section */}
       <div
         id="home"
         className="relative    h-[605px] flex items-center bg-cover bg-center bg-no-repeat  overflow-hidden"
@@ -75,7 +68,6 @@ const page = () => {
         </section>
       </div>
    
-{/* About Us Section */}
 <section id="about" className="py-16 bg-gradient-to-r from-[#EAE7F0] via-[#F7F4FA] to-[#EAE7F0]">
   <div className="max-w-screen-xl mx-auto px-6">
     <h3 className="text-4xl font-bold text-gray-800 text-center mb-12">
@@ -118,7 +110,6 @@ const page = () => {
   </div>
 </section>
 
-    {/* Hero Section */}
     <section className="text-center py-16 bg-white">
       <h2 className="text-2xl font-semibold text-gray-800 pt-10">Sell/Donate your Items</h2>
       <p className="text-sm text-gray-600 mt-4">Have items you no longer need? Sell them to our thrift store and help others find great bargains..</p>
@@ -127,7 +118,6 @@ const page = () => {
 
    
 
- {/* why queries section */}
  <section id="why" className="py-10 bg-[#EAE7F0]">
       <div className="max-w-6xl mx-auto text-center">
         <h3 className="text-2xl font-semibold text-gray-800 pb-10">Why SNAP Thrift-Store?</h3>

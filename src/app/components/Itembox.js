@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { FaShoppingBag } from "react-icons/fa"; // Import shopping bag icon
-import useAuth from "./useAuth"; // Import the authentication hook
+import { FaShoppingBag } from "react-icons/fa";
+import useAuth from "./useAuth";
 
 const Itembox = () => {
-  const { user } = useAuth(); // Get logged-in user details
+  const { user } = useAuth();
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch user packages when the component is mounted
   useEffect(() => {
-    if (!user) return; // Exit if no user is logged in
+    if (!user) return; 
 
     const fetchUserPackages = async () => {
       try {
@@ -25,14 +24,13 @@ const Itembox = () => {
           }
         );
 
-        const allPackages = response.data.data; // Get the fetched packages
-
-        // Filter packages by the logged-in user's email
+        const allPackages = response.data.data; 
+       
         const userPackages = allPackages.filter(
           (pkg) => pkg.email === user.email
         );
 
-        setPackages(userPackages); // Set only the user's packages
+        setPackages(userPackages); 
         setLoading(false);
       } catch (err) {
         console.error("Error fetching packages:", err);
@@ -42,17 +40,14 @@ const Itembox = () => {
     };
 
     fetchUserPackages();
-  }, [user]); // Run when the user changes
+  }, [user]); 
 
-  // Function to delete a package
   const handleDelete = async (packageId) => {
     try {
-      // Send a DELETE request to the backend
       await axios.delete(
         `https://snap-thrift-backend.onrender.com/package/deletePackage/${packageId}`
       );
 
-      // Remove the deleted package from the frontend state
       setPackages(packages.filter((pkg) => pkg._id !== packageId));
     } catch (err) {
       console.error("Error deleting package:", err);
@@ -88,10 +83,14 @@ const Itembox = () => {
                     <p className="text-gray-600"><strong>Status:</strong> <span className="font-semibold text-blue-600">{pkg.status}</span></p>
                   </div>
                   
+<<<<<<< HEAD
                   {/* DELETE button below the status */}
                   {/* <div className="flex justify-end mt-4">
+=======
+                  <div className="flex justify-end mt-4">
+>>>>>>> f2143e9dbb782aadce9d953e7d6784549cbe42ad
                     <button
-                      onClick={() => handleDelete(pkg._id)} // Calls the handleDelete function with the package ID
+                      onClick={() => handleDelete(pkg._id)} 
                       className="bg-red-600 text-white font-bold text-sm py-1 px-3 rounded-lg shadow-md hover:bg-red-700 transition-all duration-300"
                     >
                       DELETE

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import { FaHandHoldingUsd } from 'react-icons/fa'; // For "source of income" icon
-import { MdVerified } from 'react-icons/md'; // For verified icon
+import { FaHandHoldingUsd } from 'react-icons/fa'; 
+import { MdVerified } from 'react-icons/md'; 
 
 const VerifiedSection = () => {
   return (

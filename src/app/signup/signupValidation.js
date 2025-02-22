@@ -33,17 +33,6 @@ function Validation(values) {
       errors.email = "(Invalid Email)";
     }
   
-    //for password
-    let password_pattern = /^(?=.*[0-9])(?=.*[!@#$%^&])[a-zA-Z0-9!@#$%^&]{6,16}$/;
-  
-    // Validate the password
-    if (!values.password || values.password.trim() === "") {
-      errors.password = "(Empty Field)";
-    } else if (!password_pattern.test(values.password)) {
-      errors.password = "(Invalid Password)";
-    }
-    
-  
     return errors;
   }
   

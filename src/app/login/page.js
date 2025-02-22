@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { MdVisibility, MdOutlineEmail, MdVisibilityOff } from "react-icons/md";
-import Cookies from "js-cookie"; // Import js-cookie
+import Cookies from "js-cookie";
+import clearAllCookies from "../components/ClearCookies";
 
 const Page = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,6 +13,10 @@ const Page = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState({});
+    const [loading, setLoading] = useState(false);
+  
+
+  clearAllCookies();
 
   const handleInput = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -19,7 +24,7 @@ const Page = () => {
   };
   async function handleSubmit(event) {
     event.preventDefault();
-  
+
     try {
       const res = await axios.post(
         "https://snap-thrift-backend.onrender.com/auth/login",
@@ -29,19 +34,18 @@ const Page = () => {
           withCredentials: true,
         }
       );
-  
-      console.log("Login Response:", res.data); // Debugging response
-  
+
+      console.log("Login Response:", res.data);
+
       if (res.data.success) {
         const { accessToken, user } = res.data.data;
-        const role = user.role; // Extract role from the user object
+        const role = user.role;
         console.log("Token received:", accessToken);
-        console.log("User Role:", role); // Log role to verify
-  
+        console.log("User Role:", role);
+
         Cookies.set("accessToken", accessToken, { expires: 7 });
         console.log("Token saved to cookies");
-  
-        // Role-based redirection
+
         if (role === "admin") {
           console.log("Redirecting to Admin Page...");
           router.push("/Admins/adminpage");
@@ -56,11 +60,11 @@ const Page = () => {
     } catch (err) {
       console.error("Login Error:", err.response?.data || err);
       setError({
-        general: err.response?.data?.message || "An error occurred during login.",
+        general:
+          err.response?.data?.message || "An error occurred during login.",
       });
     }
   }
-  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#5F41E4]">
@@ -70,7 +74,6 @@ const Page = () => {
         </h1>
 
         <form onSubmit={handleSubmit}>
-          {/* Email input */}
           <div className="mb-4 relative">
             <input
               type="email"
@@ -86,7 +89,6 @@ const Page = () => {
             )}
           </div>
 
-          {/* Password input */}
           <div className="mb-4 relative">
             <input
               type={showPassword ? "text" : "password"}
@@ -101,32 +103,41 @@ const Page = () => {
               type="button"
               onClick={toggleVisibility}
             >
-              {showPassword ? <MdVisibilityOff size={20} /> : <MdVisibility size={20} />}
+              {showPassword ? (
+                <MdVisibilityOff size={20} />
+              ) : (
+                <MdVisibility size={20} />
+              )}
             </button>
             {error.password && (
-              <span className="text-xs text-red-500 italic">{error.password}</span>
+              <span className="text-xs text-red-500 italic">
+                {error.password}
+              </span>
             )}
           </div>
 
-          {/* General error */}
           {error.general && (
-            <div className="text-xs text-red-500 italic mb-3">{error.general}</div>
+            <div className="text-xs text-red-500 italic mb-3">
+              {error.general}
+            </div>
           )}
 
-          {/* Submit button */}
           <button
             type="submit"
             className="w-full bg-[#5F41E4] text-[#D5CBFF] font-bold py-2 px-4 rounded-md hover:bg-[#5038b9]"
           >
-            Log In
+           
+            {loading ? "Loging Up..." : "Log In"}
           </button>
         </form>
 
-        {/* Links */}
         <div className="text-center text-sm mt-4">
           <p>
             Don’t have an account?{" "}
-            <a href="/signup" className="text-[#5F41E4] font-bold hover:underline">
+            <a
+              href="/signup"
+              className="text-[#5F41E4] font-bold hover:underline"
+            >
               Signup now
             </a>
           </p>
