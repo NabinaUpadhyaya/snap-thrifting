@@ -5,17 +5,18 @@ import axios from "axios";
 const useAuth = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [totalCustomers, setTotalCustomers] = useState(0); // State to hold the total customers count
+  const [authLoading, setAuthLoading] = useState(true);
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         // Retrieve the token from cookies
         const token = Cookies.get("accessToken");
-        console.log("Token found:", token);
 
         if (!token) {
-          console.log("No token found");
           setLoading(false);
+          setAuthLoading(false); // Ensure auth loading is false if no token
           return;
         }
 
@@ -26,8 +27,6 @@ const useAuth = () => {
           },
           withCredentials: true,
         });
-
-        console.log("User data received:", res.data.data); // ✅ Debugging response
 
         if (res.data.success) {
           setUser({
@@ -41,13 +40,36 @@ const useAuth = () => {
         console.log("Error fetching user:", err);
       } finally {
         setLoading(false);
+        setAuthLoading(false);
+      }
+    };
+
+    const fetchTotalCustomers = async () => {
+      try {
+        // Fetch all users - assuming that 'role' helps us determine customers
+        const res = await axios.get("https://snap-thrift-backend.onrender.com/user/getAllUsers", {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("accessToken")}`,
+          },
+        });
+
+        if (res.data.success) {
+          // Count the number of customers (you can adjust based on your role logic)
+          const customerCount = res.data.data.filter((user) => user.role === "customer").length;
+          setTotalCustomers(customerCount);
+        } else {
+          console.log("Failed to fetch users:", res.data.message);
+        }
+      } catch (err) {
+        console.log("Error fetching total customers:", err);
       }
     };
 
     fetchUser();
+    fetchTotalCustomers();
   }, []);
 
-  return { user, loading };
+  return { user, loading, authLoading, totalCustomers };
 };
 
 export default useAuth;

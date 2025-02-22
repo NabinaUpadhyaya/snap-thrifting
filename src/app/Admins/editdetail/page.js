@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import useAuth from "./useAuth";
+import useAuth from "../../components/useAuth";
 import axios from "axios";
 import { FaTshirt, FaTag, FaInfoCircle, FaImages } from "react-icons/fa";
 import { FiX, FiUser, FiMail, FiPhone } from "react-icons/fi";
@@ -86,7 +86,7 @@ const EditProductPage = () => {
               <p>Loading user data...</p>
             ) : user ? (
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="flex items-center border rounded-lg px-3 py-2 bg-gray-100">
+                {/* <div className="flex items-center border rounded-lg px-3 py-2 bg-gray-100">
                   <FiUser className="text-gray-500 mr-2" />
                   <input type="text" value={user.name} disabled className="w-full focus:outline-none bg-transparent" />
                 </div>
@@ -97,7 +97,7 @@ const EditProductPage = () => {
                 <div className="flex items-center border rounded-lg px-3 py-2 bg-gray-100">
                   <FiPhone className="text-gray-500 mr-2" />
                   <input type="text" value={user.phoneNumber} disabled className="w-full focus:outline-none bg-transparent" />
-                </div>
+                </div> */}
                 <div className="flex flex-col">
                   <label htmlFor="productName" className="text-sm font-medium mb-1">
                     <FaTshirt className="mr-2 text-gray-500" /> Product Name

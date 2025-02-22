@@ -19,45 +19,45 @@ import useAuth from "../../components/useAuth";
 const Page = () => {
   const { user, loading: loadingUser } = useAuth(); // Use the hook to get user data
 
-//   const [stats, setStats] = useState({
-//     customers: 0,
-//     packages: 0,
-//     orders: 0,
+  const [stats, setStats] = useState({
+    customers: 0,
+    packages: 0,
+    orders: 0,
 
-// });
-// useEffect(() => {
-//   const fetchStats = async () => {
-//     try {
-//       const response = await fetch("http://localhost:5000/products/createProduct"); // Replace with your API URL
-//       const data = await response.json();
-//       setStats({
-//         customers: data.customers,
-//         packages: data.packages,
-//         orders: data.orders,
-//       });
-//     } catch (error) {
-//       // console.error("Error fetching stats:", error);
-//     }
-//   };
-//   });
+});
+useEffect(() => {
+  const fetchStats = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/products/createProduct"); // Replace with your API URL
+      const data = await response.json();
+      setStats({
+        customers: data.customers,
+        packages: data.packages,
+        orders: data.orders,
+      });
+    } catch (error) {
+      // console.error("Error fetching stats:", error);
+    }
+  };
+  });
 
-  // useEffect(() => {
-  //   const fetchStats = async () => {
-  //     try {
-  //       const response = await fetch("https://your-backend-api.com/api/stats"); // Replace with your API URL
-  //       const data = await response.json();
-  //       setStats({
-  //         customers: data.customers,
-  //         packages: data.packages,
-  //         orders: data.orders,
-  //       });
-  //     } catch (error) {
-  //       console.log("Error fetch]]ing stats:", error);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await fetch("https://your-backend-api.com/api/stats"); // Replace with your API URL
+        const data = await response.json();
+        setStats({
+          customers: data.customers,
+          packages: data.packages,
+          orders: data.orders,
+        });
+      } catch (error) {
+        console.log("Error fetch]]ing stats:", error);
+      }
+    };
 
-  //   fetchStats();
-  // }, []);
+    fetchStats();
+  }, []);
 
   const [formData, setFormData] = useState({
     productName: "",
@@ -98,55 +98,39 @@ const [showConfirm, setShowConfirm] = useState(false);
       [name]: files[0],
     }));
   };
-  
-  const getTokenFromCookies = () => {
-    const token = document.cookie
-      .split('; ')
-      .find(row => row.startsWith('accessToken='))
-      ?.split('=')[1];
-    return token;
-  };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Sending data...");  
-  
+
     const form = new FormData();
     form.append("name", formData.productName);
     form.append("price", formData.productPrice);
     form.append("description", formData.productDescription);
-    form.append("size", formData.productSize.toUpperCase()); // Ensure size is 'S', 'M', or 'L'
+    form.append("size", formData.productSize);
     form.append("discolor", formData.productDiscolor);
-    form.append("condition", formData.productCondition.toLowerCase()); // Ensure condition is 'new' or 'used'
+    form.append("condition", formData.productCondition);
     form.append("tear", formData.productTear);
-    form.append("category", formData.productCategory.toLowerCase()); // Ensure category is a valid category
-  
-    // Append multiple images
+    form.append("category", formData.productCategory);
+
     if (formData.productImage1) {
       form.append("images", formData.productImage1);
     }
     if (formData.productImage2) {
       form.append("images", formData.productImage2);
     }
-  
+
     try {
       const response = await fetch(
         "https://snap-thrift-backend.onrender.com/products/createProduct",
         {
           method: "POST",
-          credentials: "include", // Include cookies for authentication
-          body: form, // No need to add headers, browser sets it for FormData
+          body: form,
         }
       );
-  
       const data = await response.json();
-  
-      console.log("Response status:", response.status);
-  
+
       if (response.ok) {
         console.log("Product added successfully:", data);
-        alert("Product added successfully!");
-  
         setFormData({
           productName: "",
           productPrice: "",
@@ -160,16 +144,12 @@ const [showConfirm, setShowConfirm] = useState(false);
           productImage2: null,
         });
       } else {
-        console.error("Error adding product:", data);
-        alert(`Error: ${data.message}`);
+        console.log("Error adding product:", data);
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("There was an error adding the product. Please try again.");
+      console.log("Error submitting form:", error);
     }
   };
-  
-
 
   return (
     <div className="min-h-screen flex">
@@ -411,27 +391,36 @@ const [showConfirm, setShowConfirm] = useState(false);
                 <option value="" disabled>
                   Select condition
                 </option>
-                <option value="new">new</option>
-                <option value="used">used</option>
-                <option value="like-new">like new</option>
+                <option value="new">New</option>
+                <option value="used">Used</option>
+                <option value="like-new">Like New</option>
               </select>
             </div>
 
             {/* Product Category */}
-            <select
-              id="productCategory"
-              name="productCategory"
-              value={formData.productCategory}
-              onChange={handleInputChange}
-              className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#5F41E4] focus:outline-none"
-              required
-            >
-              <option value="" disabled>Select category</option>
-              <option value="clothing">clothing</option>
-              <option value="shoes">shoes</option>
-              <option value="accessories">accessories</option>
-            </select>
-
+            <div className="flex flex-col">
+              <label
+                htmlFor="productCategory"
+                className="flex items-center text-sm font-medium mb-1"
+              >
+                <FaListAlt className="mr-2 text-gray-500" /> Category
+              </label>
+              <select
+                id="productCategory"
+                name="productCategory"
+                value={formData.productCategory}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#5F41E4] focus:outline-none"
+                required
+              >
+                <option value="" disabled>
+                  Select category
+                </option>
+                <option value="new">clothes</option>
+                <option value="used">shoes</option>
+                <option value="like-new">accessories</option>
+              </select>
+            </div>
 
             {/* Product Images */}
             <div className="col-span-2 grid grid-cols-2 gap-6">
@@ -471,14 +460,12 @@ const [showConfirm, setShowConfirm] = useState(false);
 
             {/* Submit Button */}
             <div className="col-span-2 text-center">
-            <button
-  type="submit"  // Change type to "submit" to trigger form submission
-  className="bg-[#5F41E4] text-white py-2 px-6 rounded-md hover:bg-[#5F41E4] transition"
->
-  Add Product
-</button>
-
-
+              <button
+                type="submit"
+                className="bg-[#5F41E4] text-white py-2 px-6 rounded-md hover:bg-[#5F41E4] transition"
+              >
+                Add Product
+              </button>
             </div>
           </form>
         </div>

@@ -89,14 +89,14 @@ const Itembox = () => {
                   </div>
                   
                   {/* DELETE button below the status */}
-                  <div className="flex justify-end mt-4">
+                  {/* <div className="flex justify-end mt-4">
                     <button
                       onClick={() => handleDelete(pkg._id)} // Calls the handleDelete function with the package ID
                       className="bg-red-600 text-white font-bold text-sm py-1 px-3 rounded-lg shadow-md hover:bg-red-700 transition-all duration-300"
                     >
                       DELETE
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               ))}
             </div>
