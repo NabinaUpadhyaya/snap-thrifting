@@ -18,7 +18,6 @@ import useAuth from "../../components/useAuth";
 const Page = () => {
   const { user, loading: loadingUser } = useAuth(); 
 
-
   const [formData, setFormData] = useState({
     productName: "",
     productPrice: "",
