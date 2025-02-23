@@ -127,7 +127,7 @@ const UserOrderPage = () => {
         setOrders(userOrders);
         setLoading(false);
       } catch (error) {
-        setError("Failed to load your orders. Please try again later.");
+        // setError("Failed to load your orders. Please try again later.");
         setLoading(false);
       }
     };

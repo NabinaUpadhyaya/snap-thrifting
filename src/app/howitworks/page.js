@@ -49,7 +49,7 @@ const WhyAntidoteSection = () => (
 
 const HowItWorksSection = () => (
   <div className="text-[#5F41E4] bg-white py-8 px-4">
-    <h2 className="text-2xl font-bold text-center mb-8">HOW IT WORKS?</h2>
+    <h2 className="text-2xl font-bold text-center mb-8">HOW TO BECOME A SELLER?</h2>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
       <div>
         <FaBoxOpen className="text-6xl text-amber-200 mx-auto mb-4" />
@@ -63,7 +63,7 @@ const HowItWorksSection = () => (
         <FaTruck className="text-6xl text-gray-500 mx-auto mb-4" />
         <h3 className="text-lg font-semibold">Send</h3>
         <p className="mt-2 text-gray-500">
-          Send them to snap-thrift and earn a decent passive income.
+        Send your items to Snap-Thrift, package them according to what you have, set your own price, and earn a decent passive income.
         </p>
       </div>
       <div>
