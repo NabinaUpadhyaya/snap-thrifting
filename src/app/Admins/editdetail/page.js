@@ -47,8 +47,7 @@ const EditProductPage = () => {
           discolor: productData.discolor ? "yes" : "no",
           condition: productData.condition || "new",
           tear: productData.tear ? "yes" : "no",
-          image1: productData.images && productData.images[0] ? productData.images[0].url : "",
-          image2: productData.images && productData.images[1] ? productData.images[1].url : "",
+         
         };
 
         console.log("Fetched Product Data:", mappedData);
@@ -87,7 +86,7 @@ const EditProductPage = () => {
     
     const updateData = {
       name: formData.name,
-      price: parseFloat(formData.price), 
+      price: formData.price, 
       description: formData.description,
       size: formData.size.toUpperCase(),
       discolor: formData.discolor === "yes",
@@ -261,41 +260,6 @@ const EditProductPage = () => {
             </select>
           </div>
 
-          <div className="col-span-2 grid grid-cols-2 gap-6">
-            <div className="flex flex-col">
-              <label htmlFor="image1">Product Image 1</label>
-              {formData.image1 && typeof formData.image1 === "string" && (
-                <img
-                  src={formData.image1}
-                  alt="Product 1"
-                  className="w-20 h-20 object-cover"
-                />
-              )}
-              <input
-                type="file"
-                id="image1"
-                name="image1"
-                onChange={handleFileChange}
-              />
-            </div>
-
-            <div className="flex flex-col">
-              <label htmlFor="image2">Product Image 2</label>
-              {formData.image2 && typeof formData.image2 === "string" && (
-                <img
-                  src={formData.image2}
-                  alt="Product 2"
-                  className="w-20 h-20 object-cover"
-                />
-              )}
-              <input
-                type="file"
-                id="image2"
-                name="image2"
-                onChange={handleFileChange}
-              />
-            </div>
-          </div>
 
           <div className="col-span-2 text-center">
             <button
