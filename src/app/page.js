@@ -7,11 +7,11 @@ import Footer from './components/Footer';
 
 const page = () => {
   const products = [
-    { id: 1, name: "Woolen sweater", category: "Clothing", price: 900, image:"/image/woolensweater.jpg" },
-    { id: 2, name: "Caps", category: "Accessories", price: 1000, image:"/image/caps.jpg" },
-    { id: 3, name: "Hoodie- Gray", category: "Clothing", price: 800, image:"/image/greyhoodie.jpg" },
-    { id: 4, name: "Pink Dr.martens shoe", category: "Shoes", price: 4500,image:"/image/boots.jpg" },
-    { id: 5, name: "Mixed Ring Collection", category: "Accessories", price: 900,image:"/image/ring.jpg" }
+    { id: 1, name: "Black Mini Dress", category: "Clothing", price: 900, image:"/image/staticimg/blackdress.jpg" },
+    { id: 2, name: "Jhumka", category: "Accessories", price: 500, image:"/image/staticimg/jhumka.jpg" },
+    { id: 3, name: "Jean Pant", category: "Clothing", price: 800, image:"/image/staticimg/panttttttt.jpg" },
+    { id: 4, name: "Bag", category: "Accessories", price: 500,image:"/image/staticimg/bagggg.jpg" },
+    { id: 5, name: "Black Dress", category: "Clothings", price: 900,image:"/image/staticimg/blacklong.jpg" }
 
    
    
@@ -45,30 +45,44 @@ const page = () => {
       <div className=""></div>
 
       <div
-
-id="home"
-className="relative h-[605px] flex items-center bg-cover bg-center bg-no-repeat overflow-hidden"
-style={{
-  backgroundImage: "linear-gradient(to bottom, rgba(107, 73, 240, 0.7), rgba(33, 150, 243, 0.7)), url('/image/staticimg/back.jpg')",
-}}
->
-<section className="container mx-auto px-6 text-center">
-  <div className="">
-    <h2 className="text-5xl text-shadow-xl font-extrabold mb-4 animate-fade-in">
-      Style Sustainably, Shop Affordably
-    </h2>
-    <p className="text-lg text-shadow-xl mb-6 animate-slide-up">
-      Find pre-loved treasures online with fast delivery, affordable price, and trusted service.
-    </p>
-  </div>
-  <Link
-    href="/login"
-    className="bg-[#5F41E4] hover:bg-[#533cbb] text-gray-800 px-6 py-3 rounded font-bold transition duration-300 animate-bounce"
-  >
-    Shop Now
-  </Link>
-</section>
+        id="home"
+        className="relative h-[605px] flex items-center bg-cover bg-center bg-no-repeat overflow-hidden"
+        style={{
+          backgroundImage: "linear-gradient(to bottom, rgba(76, 22, 226, 0.87), rgba(14, 14, 14, 0.7)), url('/image/staticimg/back.jpg')",
+        }}
+        >
+       
+        <section className="container mx-auto px-6 text-center">
+          <div className="text-white">
+            <h2 className="text-5xl text-shadow-xl font-extrabold mb-4 animate-fade-in">
+              Style Sustainably, Shop Affordably
+            </h2>
+            <p className="text-lg text-shadow-xl mb-6 animate-slide-up">
+              Find pre-loved treasures online with fast delivery, affordable price, and trusted service.
+            </p>
+          </div>
+          <Link
+            href="/login"
+            className="bg-white hover:bg-[#5F41E4] text-gray-800 px-6 py-3 rounded font-bold transition duration-300 animate-bounce"
+          >
+            Shop Now
+          </Link>
+          {/* New Image Section */}
+          <div className="relative transform translate-y-6 mt-8">
+  <img
+    src="/image/staticimg/ma.avif"
+    alt="right"
+    className="h-72 w-72 object-cover rounded-lg shadow-lg transform translate-x-8"
+  />
+  <img
+    src="/image/staticimg/1.jpg"
+    alt="left"
+    className="h-64 w-64 object-cover rounded-lg shadow-lg transform -translate-x-8 translate-y-8 absolute top-0 left-1/4 z-10"
+  />
 </div>
+
+        </section>
+        </div>
 
 
    
